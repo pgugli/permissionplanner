@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Role Planner</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    .entity-input {
+      width: 100%;
+      border: none;
+      text-align: center;
+    }
+    .Org { background-color: green; color: white; }
+    .ParentChild { background-color: lightgreen; color: black; }
+    .BU { background-color: orange; color: black; }
+    .User { background-color: moccasin; color: black; }
+    .None { background-color: red; color: white; }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js"></script>
+</head>
+<body>
+  <div style="margin-bottom: 20px;">
+    <!-- Buttons to export and save -->
+    <button onclick="exportTableToExcel()">Export to Excel</button>
+    <button onclick="saveTableAsHTML()">Save as HTML</button>
+  </div>
+
+  <h2>Role Planner</h2>
+
+  <!-- Project Name Input -->
+  <label for="projectName">Project Name: </label>
+  <input type="text" id="projectName" placeholder="Enter Project Name" style="width: 100%; padding: 8px; margin-bottom: 20px;" />
+
+  <table id="permissionTable">
+    <thead>
+      <tr>
+        <th>Entity</th>
+        <th>Create</th>
+        <th>Read</th>
+        <th>Write</th>
+        <th>Delete</th>
+        <th>Append</th>
+        <th>Append To</th>
+        <th>Assign</th>
+        <th>Share</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input class="entity-input" type="text" placeholder="Enter Entity" /></td>
+        <td onclick="cyclePermission(this)"></td>
+        <td onclick="cyclePermission(this)"></td>
+        <td onclick="cyclePermission(this)"></td>
+        <td onclick="cyclePermission(this)"></td>
+        <td onclick="cyclePermission(this)"></td>
+        <td onclick="cyclePermission(this)"></td>
+        <td onclick="cyclePermission(this)"></td>
+        <td onclick="cyclePermission(this)"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+  <button onclick="addRow()">Add Row</button>
+
+  <script>
+    const states = [
+      { class: 'Org', label: 'Org.' },
+      { class: 'ParentChild', label: 'Parent: Child BU' },
+      { class: 'BU', label: 'BU' },
+      { class: 'User', label: 'User' },
+      { class: 'None', label: 'None' },
+      { class: '', label: '' }
+    ];
+
+    function cyclePermission(cell) {
+      let currentStateIndex = states.findIndex(s => cell.classList.contains(s.class));
+      cell.className = '';
+      currentStateIndex = (currentStateIndex + 1) % states.length;
+      const nextState = states[currentStateIndex];
+      cell.classList.add(nextState.class);
+      cell.textContent = nextState.label;
+    }
+
+    function addRow() {
+      const table = document.getElementById("permissionTable").getElementsByTagName('tbody')[0];
+      const row = table.insertRow();
+      const entityCell = row.insertCell();
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.className = 'entity-input';
+      input.placeholder = 'Enter Entity';
+      entityCell.appendChild(input);
+
+      for (let i = 0; i < 8; i++) {
+        const cell = row.insertCell();
+        cell.onclick = function () { cyclePermission(cell); };
+      }
+    }
+
+    function exportTableToExcel() {
+      const table = document.getElementById("permissionTable");
+      
+      // Creazione del workbook e della sheet
+      const wb = XLSX.utils.table_to_book(table, { sheet: "Permessi" });
+
+      // Estrazione dell'intestazione dalla tabella
+      const headerRow = [];
+      const headerCells = table.querySelectorAll('thead tr th');
+      headerCells.forEach(th => headerRow.push(th.textContent.trim()));
+      
+      // Inserimento dell'intestazione nella prima riga del foglio Excel
+      const ws = wb.Sheets.Permessi;
+      for (let i = 0; i < headerRow.length; i++) {
+        const headerCell = { v: headerRow[i], t: 's' };
+        const cellAddress = XLSX.utils.encode_cell({ r: 0, c: i });
+        ws[cellAddress] = headerCell;
+      }
+
+      // Aggiunta delle righe di dati
+      const rows = table.querySelectorAll('tbody tr');
+      rows.forEach((row, rowIndex) => {
+        const entityCell = row.cells[0].querySelector('input');
+        const entityValue = entityCell ? entityCell.value : '';
+
+        // Scrittura del valore dell'entità
+        const entityAddress = XLSX.utils.encode_cell({ r: rowIndex + 1, c: 0 });
+        ws[entityAddress] = { v: entityValue, t: 's' };
+
+        // Scrittura dei permessi nelle altre colonne
+        for (let colIndex = 1; colIndex < row.cells.length; colIndex++) {
+          const cell = row.cells[colIndex];
+          const colorClass = cell.className;
+          const permissionText = cell.textContent.trim();
+
+          // Scrittura del permesso e della colorazione nella cella
+          const cellAddress = XLSX.utils.encode_cell({ r: rowIndex + 1, c: colIndex });
+          ws[cellAddress] = { v: permissionText, t: 's' };
+
+          // Aggiungere il colore della cella
+          const style = {};
+          if (colorClass === 'Org') {
+            style.fill = { fgColor: { rgb: '008000' } }; // Verde
+          } else if (colorClass === 'ParentChild') {
+            style.fill = { fgColor: { rgb: '90EE90' } }; // Verde Chiaro
+          } else if (colorClass === 'BU') {
+            style.fill = { fgColor: { rgb: 'FFA500' } }; // Arancio
+          } else if (colorClass === 'User') {
+            style.fill = { fgColor: { rgb: 'FFE4B5' } }; // Arancio chiaro
+          } else if (colorClass === 'None') {
+            style.fill = { fgColor: { rgb: 'FF0000' } }; // Rosso
+          }
+          if (style.fill) {
+            ws[cellAddress].s = style;
+          }
+        }
+      });
+
+      // Esportazione del file Excel
+      XLSX.writeFile(wb, 'permessi.xlsx');
+    }
+
+    function saveTableAsHTML() {
+      const table = document.getElementById("permissionTable");
+      const projectName = document.getElementById("projectName").value;
+
+      // Include CSS
+      const styles = `
+        <style>
+          table {
+            width: 100%;
+            border-collapse: collapse;
+          }
+          th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+          }
+          th {
+            background-color: #f2f2f2;
+          }
+          .entity-input {
+            width: 100%;
+            border: none;
+            text-align: center;
+          }
+          .Org { background-color: green; color: white; }
+          .ParentChild { background-color: lightgreen; color: black; }
+          .BU { background-color: orange; color: black; }
+          .User { background-color: moccasin; color: black; }
+          .None { background-color: red; color: white; }
+        </style>
+      `;
+
+      // Modify the content of the table to include the input values
+      const rows = table.querySelectorAll('tbody tr');
+      rows.forEach(row => {
+        const entityCell = row.cells[0].querySelector('input');
+        if (entityCell) {
+          row.cells[0].textContent = entityCell.value; // Insert the input value in the cell
+        }
+      });
+
+      // Prompt for the file name
+      const fileName = prompt("Enter the file name (without extension):", "permissions");
+
+      // If the user entered a name, use it, otherwise use the default name
+      const finalFileName = fileName ? `${fileName}.html` : "permissions.html";
+
+      // Add the table to the HTML file
+      const htmlContent = `
+        <html>
+          <head>
+            <title>Permissions - ${projectName}</title>
+            ${styles}
+          </head>
+          <body>
+            <h2>Role Planner - ${projectName}</h2>
+            ${table.outerHTML}
+          </body>
+        </html>
+      `;
+
+      // Create the Blob and download the file
+      const blob = new Blob([htmlContent], { type: 'text/html' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = finalFileName;  // Use the user-specified file name
+      link.click();
+    }
+  </script>
+</body>
+</html>
