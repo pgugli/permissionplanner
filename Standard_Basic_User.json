@@ -1,0 +1,711 @@
+[
+  {
+    "name": "Basic User",
+    "rows": [
+      {
+        "entity": "account",
+        "privileges": [1, 1, 1, 1, 1, 1, 1, 1]
+      },
+      {
+        "entity": "aciviewmapper",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "actioncard",
+        "privileges": [1, 1, 1, 0, 1, 8, 0, 0]
+      },
+      {
+        "entity": "actioncardusersettings",
+        "privileges": [1, 1, 1, 1, 0, 0, 0, 1]
+      },
+      {
+        "entity": "activitypointer",
+        "privileges": [1, 1, 1, 1, 1, 1, 1, 1]
+      },
+      {
+        "entity": "annotation",
+        "privileges": [1, 1, 1, 1, 1, 1, 1, 1]
+      },
+      {
+        "entity": "appconfigmaster",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "applicationfile",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "appmodule",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "appointment",
+        "privileges": [1, 2, 1, 1, 1, 1, 1, 1]
+      },
+      {
+        "entity": "asyncoperation",
+        "privileges": [0, 1, 1, 0, 0, 1, 1, 0]
+      },
+      {
+        "entity": "attribute",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "attributemap",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "authorizationserver",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "azureserviceconnection",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "bookingstatus",
+        "privileges": [0, 8, 0, 0, 8, 8, 0, 0]
+      },
+      {
+        "entity": "businessunit",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "businessunitnewsarticle",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "calendar",
+        "privileges": [0, 0, 0, 0, 2, 8, 0, 0]
+      },
+      {
+        "entity": "callbackregistration",
+        "privileges": [1, 1, 1, 1, 0, 0, 1, 1]
+      },
+      {
+        "entity": "campaign",
+        "privileges": [0, 2, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "canvasappextendedmetadata",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "category",
+        "privileges": [0, 8, 0, 0, 8, 8, 0, 0]
+      },
+      {
+        "entity": "channelaccessprofile",
+        "privileges": [0, 2, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "channelaccessprofilerule",
+        "privileges": [0, 2, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "channelpropertygroup",
+        "privileges": [0, 8, 0, 0, 8, 8, 0, 0]
+      },
+      {
+        "entity": "complexcontrol",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "connection",
+        "privileges": [1, 8, 8, 1, 8, 8, 1, 1]
+      },
+      {
+        "entity": "connectionrole",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "connector",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "contact",
+        "privileges": [1, 1, 1, 1, 1, 1, 1, 1]
+      },
+      {
+        "entity": "convertrule",
+        "privileges": [0, 8, 0, 0, 8, 8, 1, 1]
+      },
+      {
+        "entity": "customerrelationship",
+        "privileges": [1, 1, 1, 1, 1, 1, 1, 1]
+      },
+      {
+        "entity": "delveactionhub",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "desktopflowbinary",
+        "privileges": [0, 1, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "desktopflowmodule",
+        "privileges": [0, 1, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "documenttemplate",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "duplicaterule",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "email",
+        "privileges": [1, 2, 1, 1, 1, 1, 1, 1]
+      },
+      {
+        "entity": "emailserverprofile",
+        "privileges": [0, 8, 0, 0, 0, 8, 0, 0]
+      },
+      {
+        "entity": "emailsignature",
+        "privileges": [1, 8, 1, 1, 0, 0, 2, 0]
+      },
+      {
+        "entity": "entity",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "entitydataprovider",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "entitykey",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "entitymap",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "environmentvariabledefinition",
+        "privileges": [0, 8, 0, 0, 8, 8, 0, 0]
+      },
+      {
+        "entity": "eos_businessrole",
+        "privileges": [0, 8, 0, 0, 8, 8, 0, 0]
+      },
+      {
+        "entity": "eos_country",
+        "privileges": [0, 8, 0, 0, 8, 8, 0, 0]
+      },
+      {
+        "entity": "eos_dealupdate",
+        "privileges": [0, 8, 0, 0, 8, 8, 0, 0]
+      },
+      {
+        "entity": "eos_erpproductinventory",
+        "privileges": [0, 8, 0, 0, 8, 8, 0, 0]
+      },
+      {
+        "entity": "eos_incidenttype",
+        "privileges": [0, 8, 0, 0, 8, 8, 0, 0]
+      },
+      {
+        "entity": "eos_incidentworkinginterval",
+        "privileges": [8, 8, 8, 0, 8, 8, 0, 0]
+      },
+      {
+        "entity": "eos_language",
+        "privileges": [0, 8, 0, 0, 8, 8, 0, 0]
+      },
+      {
+        "entity": "eos_organization",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "eos_parameter",
+        "privileges": [0, 8, 0, 0, 8, 8, 0, 0]
+      },
+      {
+        "entity": "eos_profile",
+        "privileges": [0, 8, 0, 0, 8, 8, 0, 0]
+      },
+      {
+        "entity": "eos_profiledetail",
+        "privileges": [0, 8, 0, 0, 8, 8, 0, 0]
+      },
+      {
+        "entity": "eos_profilegroup",
+        "privileges": [0, 8, 0, 0, 8, 8, 0, 0]
+      },
+      {
+        "entity": "eos_profiling",
+        "privileges": [1, 8, 0, 1, 8, 8, 0, 0]
+      },
+      {
+        "entity": "eos_quoterevisionreason",
+        "privileges": [0, 8, 0, 0, 8, 8, 0, 0]
+      },
+      {
+        "entity": "eos_region",
+        "privileges": [0, 8, 0, 0, 8, 8, 0, 0]
+      },
+      {
+        "entity": "eos_source",
+        "privileges": [0, 8, 0, 0, 8, 8, 0, 0]
+      },
+      {
+        "entity": "eos_stateorprovince",
+        "privileges": [0, 8, 0, 0, 8, 8, 0, 0]
+      },
+      {
+        "entity": "eoslib_accountoperation",
+        "privileges": [0, 1, 0, 0, 8, 8, 0, 8]
+      },
+      {
+        "entity": "eoslib_externaluser",
+        "privileges": [0, 8, 0, 0, 8, 8, 0, 0]
+      },
+      {
+        "entity": "eoslib_legalentity",
+        "privileges": [0, 8, 0, 0, 8, 8, 0, 0]
+      },
+      {
+        "entity": "eoslib_productcategory",
+        "privileges": [0, 8, 0, 0, 8, 8, 0, 0]
+      },
+      {
+        "entity": "eoslib_productgroup",
+        "privileges": [0, 8, 0, 0, 8, 8, 0, 0]
+      },
+      {
+        "entity": "eoslib_shipmentmethod",
+        "privileges": [0, 8, 0, 0, 8, 8, 0, 0]
+      },
+      {
+        "entity": "eoslib_shippingagent",
+        "privileges": [0, 8, 0, 0, 8, 8, 0, 0]
+      },
+      {
+        "entity": "expanderevent",
+        "privileges": [0, 8, 8, 0, 0, 8, 0, 0]
+      },
+      {
+        "entity": "expiredprocess",
+        "privileges": [8, 8, 8, 8, 8, 8, 0, 0]
+      },
+      {
+        "entity": "externalparty",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "feedback",
+        "privileges": [0, 1, 0, 0, 1, 1, 0, 0]
+      },
+      {
+        "entity": "flowsession",
+        "privileges": [0, 1, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "goal",
+        "privileges": [0, 1, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "goalrollupquery",
+        "privileges": [0, 1, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "hierarchyrule",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "import",
+        "privileges": [1, 1, 1, 1, 1, 1, 1, 4]
+      },
+      {
+        "entity": "importfile",
+        "privileges": [1, 1, 1, 1, 1, 1, 1, 4]
+      },
+      {
+        "entity": "importmap",
+        "privileges": [2, 8, 2, 2, 2, 2, 2, 1]
+      },
+      {
+        "entity": "incident",
+        "privileges": [1, 2, 1, 0, 1, 1, 1, 1]
+      },
+      {
+        "entity": "interactionforemail",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "invoice",
+        "privileges": [1, 2, 1, 0, 1, 1, 1, 1]
+      },
+      {
+        "entity": "kbarticle",
+        "privileges": [0, 8, 8, 0, 8, 0, 0, 0]
+      },
+      {
+        "entity": "kbarticletemplate",
+        "privileges": [0, 8, 0, 0, 0, 8, 0, 0]
+      },
+      {
+        "entity": "knowledgearticle",
+        "privileges": [0, 8, 1, 0, 8, 8, 1, 1]
+      },
+      {
+        "entity": "knowledgearticleviews",
+        "privileges": [8, 8, 1, 0, 8, 8, 1, 1]
+      },
+      {
+        "entity": "knowledgebaserecord",
+        "privileges": [0, 8, 0, 0, 8, 8, 0, 0]
+      },
+      {
+        "entity": "lead",
+        "privileges": [1, 2, 1, 0, 1, 1, 1, 1]
+      },
+      {
+        "entity": "list",
+        "privileges": [0, 2, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "mailbox",
+        "privileges": [0, 1, 1, 0, 1, 0, 0, 0]
+      },
+      {
+        "entity": "mailboxtrackingfolder",
+        "privileges": [1, 1, 1, 1, 1, 0, 0, 0]
+      },
+      {
+        "entity": "mailmergetemplate",
+        "privileges": [1, 1, 1, 1, 1, 1, 1, 1]
+      },
+      {
+        "entity": "metric",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "mobileofflineprofile",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "msdyn_agreementsubstatus",
+        "privileges": [0, 8, 0, 0, 8, 8, 0, 0]
+      },
+      {
+        "entity": "msdyn_aibdatasetscontainer",
+        "privileges": [0, 1, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "msdyn_aibfeedbackloop",
+        "privileges": [1, 1, 0, 0, 1, 0, 0, 0]
+      },
+      {
+        "entity": "msdyn_aievent",
+        "privileges": [1, 1, 0, 1, 1, 0, 0, 0]
+      },
+      {
+        "entity": "msdyn_aimodel",
+        "privileges": [0, 1, 0, 0, 0, 1, 0, 0]
+      },
+      {
+        "entity": "msdyn_aiodlabel",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "msdyn_aitemplate",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "msdyn_booking",
+        "privileges": [1, 2, 1, 0, 1, 1, 1, 1]
+      },
+      {
+        "entity": "msdyn_bookingalertstatus",
+        "privileges": [0, 8, 0, 0, 8, 8, 0, 0]
+      },
+      {
+        "entity": "msdyn_customcontrolextendedsettings",
+        "privileges": [1, 1, 1, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "msdyn_favoriteknowledgearticle",
+        "privileges": [8, 8, 8, 8, 8, 8, 0, 0]
+      },
+      {
+        "entity": "msdyn_kbattachment",
+        "privileges": [0, 8, 8, 0, 8, 8, 8, 8]
+      },
+      {
+        "entity": "msdyn_requirementstatus",
+        "privileges": [0, 8, 0, 0, 8, 8, 0, 0]
+      },
+      {
+        "entity": "msdyn_richtextfile",
+        "privileges": [1, 1, 1, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "msdyn_timelinepin",
+        "privileges": [8, 8, 0, 8, 0, 0, 0, 0]
+      },
+      {
+        "entity": "msdyn_usersetting",
+        "privileges": [2, 8, 2, 2, 0, 2, 0, 0]
+      },
+      {
+        "entity": "msdyn_workorder",
+        "privileges": [1, 2, 1, 0, 1, 1, 1, 1]
+      },
+      {
+        "entity": "msdyn_workordersubstatus",
+        "privileges": [0, 8, 0, 0, 8, 8, 0, 0]
+      },
+      {
+        "entity": "newprocess",
+        "privileges": [8, 8, 8, 8, 8, 8, 0, 0]
+      },
+      {
+        "entity": "officegraphdocument",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "opportunity",
+        "privileges": [1, 2, 1, 0, 1, 1, 1, 1]
+      },
+      {
+        "entity": "optionset",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "organizationsetting",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "partnerapplication",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "personaldocumenttemplate",
+        "privileges": [1, 1, 1, 1, 1, 1, 1, 1]
+      },
+      {
+        "entity": "pluginassembly",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "plugintype",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "position",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "post",
+        "privileges": [8, 8, 0, 0, 8, 8, 0, 0]
+      },
+      {
+        "entity": "postfollow",
+        "privileges": [1, 8, 0, 1, 1, 0, 0, 0]
+      },
+      {
+        "entity": "pricelevel",
+        "privileges": [0, 2, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "processsession",
+        "privileges": [1, 8, 1, 1, 1, 1, 1, 1]
+      },
+      {
+        "entity": "product",
+        "privileges": [0, 2, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "queue",
+        "privileges": [0, 1, 0, 0, 0, 1, 0, 0]
+      },
+      {
+        "entity": "quote",
+        "privileges": [1, 2, 1, 0, 1, 1, 1, 1]
+      },
+      {
+        "entity": "recommendeddocument",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "relationship",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "relationshiprole",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "report",
+        "privileges": [1, 1, 1, 1, 1, 1, 1, 1]
+      },
+      {
+        "entity": "role",
+        "privileges": [0, 2, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "routingrule",
+        "privileges": [0, 8, 0, 0, 8, 8, 1, 1]
+      },
+      {
+        "entity": "salesorder",
+        "privileges": [1, 2, 1, 0, 1, 1, 1, 1]
+      },
+      {
+        "entity": "savedquery",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "savedqueryvisualization",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "sdkmessage",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "sdkmessageprocessingstep",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "sdkmessageprocessingstepimage",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "settingdefinition",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "sharepointdata",
+        "privileges": [8, 8, 8, 0, 8, 8, 0, 0]
+      },
+      {
+        "entity": "sharepointdocument",
+        "privileges": [8, 8, 8, 0, 8, 8, 1, 0]
+      },
+      {
+        "entity": "sharepointdocumentlocation",
+        "privileges": [8, 8, 8, 0, 8, 8, 1, 1]
+      },
+      {
+        "entity": "sharepointsite",
+        "privileges": [0, 8, 0, 0, 0, 8, 1, 1]
+      },
+      {
+        "entity": "sla",
+        "privileges": [0, 1, 0, 0, 1, 1, 1, 1]
+      },
+      {
+        "entity": "slakpiinstance",
+        "privileges": [0, 1, 0, 0, 1, 1, 1, 1]
+      },
+      {
+        "entity": "socialprofile",
+        "privileges": [1, 1, 1, 1, 1, 1, 1, 1]
+      },
+      {
+        "entity": "suggestioncardtemplate",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "syncerror",
+        "privileges": [1, 1, 1, 1, 1, 1, 1, 1]
+      },
+      {
+        "entity": "systemapplicationmetadata",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "systemform",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "systemuser",
+        "privileges": [0, 8, 0, 0, 2, 2, 0, 0]
+      },
+      {
+        "entity": "task",
+        "privileges": [1, 2, 1, 1, 1, 1, 1, 1]
+      },
+      {
+        "entity": "team",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "template",
+        "privileges": [1, 8, 1, 1, 2, 0, 2, 2]
+      },
+      {
+        "entity": "tracelog",
+        "privileges": [8, 8, 0, 0, 8, 8, 0, 0]
+      },
+      {
+        "entity": "trait",
+        "privileges": [1, 1, 1, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "transactioncurrency",
+        "privileges": [0, 8, 0, 0, 8, 8, 0, 0]
+      },
+      {
+        "entity": "translationprocess",
+        "privileges": [8, 8, 8, 8, 8, 8, 0, 0]
+      },
+      {
+        "entity": "userapplicationmetadata",
+        "privileges": [1, 1, 1, 1, 0, 0, 0, 0]
+      },
+      {
+        "entity": "userentityinstancedata",
+        "privileges": [1, 1, 1, 1, 0, 0, 1, 1]
+      },
+      {
+        "entity": "userentityuisettings",
+        "privileges": [1, 1, 1, 1, 0, 0, 0, 1]
+      },
+      {
+        "entity": "userform",
+        "privileges": [1, 1, 1, 1, 0, 0, 1, 1]
+      },
+      {
+        "entity": "userquery",
+        "privileges": [1, 1, 1, 1, 0, 0, 1, 1]
+      },
+      {
+        "entity": "userqueryvisualization",
+        "privileges": [1, 1, 1, 1, 0, 0, 1, 1]
+      },
+      {
+        "entity": "webresource",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "webwizard",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "wizardaccessprivilege",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "wizardpage",
+        "privileges": [0, 8, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "workflow",
+        "privileges": [1, 1, 1, 1, 1, 8, 1, 1]
+      },
+      {
+        "entity": "workflowbinary",
+        "privileges": [0, 1, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "entity": "workflowmetadata",
+        "privileges": [0, 1, 0, 0, 0, 0, 0, 0]
+      }
+    ]
+  }
+]
