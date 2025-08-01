@@ -2,574 +2,327 @@
 <html lang="en">
 <head>
     <!-- Aggiungi questo nello head per i caratteri -->
-<link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/11.0.0/css/fabric.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>D365 Permission Planner</title>
-  <!-- Aggiungi Fluent UI CSS -->
-  <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/11.0.0/css/fabric.min.css">
-  <style>
-      
-      body, html, #rolesContainer {
-    background: white !important;
-    overflow: visible !important;
-}
+    <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/11.0.0/css/fabric.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D365 Permission Planner</title>
+    <!-- Aggiungi Fluent UI CSS -->
+    <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/11.0.0/css/fabric.min.css">
+    <style>
+        body, html, #rolesContainer {
+            background: white !important;
+            overflow: visible !important;
+        }
 
-.upgrade-cell {
-    width: 15px !important;
-    padding: 0 !important;
-    text-align: center !important;
-    color: #107c10; /* Verde Fluent per azioni positive */
-    cursor: pointer;
-}
+        .upgrade-cell {
+            width: 15px !important;
+            padding: 0 !important;
+            text-align: center !important;
+            color: #107c10;
+            cursor: pointer;
+        }
 
-.ma-preview {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    transform-origin: bottom right;
-}
+        .ma-preview {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: bottom right;
+        }
 
-.upgrade-cell:hover {
-    background-color: #dff6dd !important; /* Verde chiaro al hover */
-}
-      .permissionTable td[onclick] {
-    cursor: pointer;
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-}
+        .upgrade-cell:hover {
+            background-color: #dff6dd !important;
+        }
 
-/* Mantieni lo stile per le celle di permesso */
-.permissionTable td {
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-}
-    /* Stili personalizzati con tema Fluent */
-    body {
-      background: #f3f2f1;
-      font-family: 'Segoe UI', 'Segoe UI Web (West European)', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', sans-serif;
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+        .permissionTable td[onclick] {
+            cursor: pointer;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
 
-    #main-content {
-      flex: 1;
-      width: 80%;
-      margin: 0 auto;
-      padding-bottom: 60px; /* Spazio per il footer */
-    }
+        .permissionTable td {
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
 
-    .blue-bar {
-      background: #0078d4; /* Blu principale Fluent */
-      height: 50px;
-      display: flex; 
-      align-items: center; 
-      justify-content: center; 
-      width: 100%; 
-      margin-bottom: 20px; 
-      border-radius: 2px;
-    }
+        body {
+            background: #f3f2f1;
+            font-family: 'Segoe UI', 'Segoe UI Web (West European)', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
 
-    .blue-bar h2 {
-      margin: 0; 
-      color: white; 
-      font-size: 20px; 
-      font-weight: 600; /* Peso del font Fluent */
-    }
+        #main-content {
+            flex: 1;
+            width: 80%;
+            margin: 0 auto;
+            padding-bottom: 60px;
+        }
 
-    /* Stili per la tabella */
-    .permissionTable {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 20px;
-      box-shadow: 0 1.6px 3.6px 0 rgba(0,0,0,.132), 0 0.3px 0.9px 0 rgba(0,0,0,.108);
-    }
+        .blue-bar {
+            background: #0078d4;
+            height: 50px;
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            width: 100%; 
+            margin-bottom: 20px; 
+            border-radius: 2px;
+        }
 
-    .permissionTable th {
-      background-color: #faf9f8;
-      color: #323130;
-      font-weight: 600;
-      padding: 8px;
-      text-align: center;
-      border-bottom: 1px solid #edebe9;
-    }
+        .blue-bar h2 {
+            margin: 0; 
+            color: white; 
+            font-size: 20px; 
+            font-weight: 600;
+        }
 
-    .permissionTable td {
-      padding: 8px;
-      text-align: center;
-      border-bottom: 1px solid #edebe9;
-      background-color: white !important;
-    }
+        .permissionTable {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            box-shadow: 0 1.6px 3.6px 0 rgba(0,0,0,.132), 0 0.3px 0.9px 0 rgba(0,0,0,.108);
+        }
 
-    .role-block {
-  background-color: white !important;
-}
+        .permissionTable th {
+            background-color: #faf9f8;
+            color: #323130;
+            font-weight: 600;
+            padding: 8px;
+            text-align: center;
+            border-bottom: 1px solid #edebe9;
+        }
 
-    .delete-cell {
-      width: 15px !important;
-      padding: 0 !important;
-      text-align: center !important;
-      color: #a4262c; /* Rosso Fluent per azioni distruttive */
-      cursor: pointer;
-    }
+        .permissionTable td {
+            padding: 8px;
+            text-align: center;
+            border-bottom: 1px solid #edebe9;
+            background-color: white !important;
+        }
 
-    .delete-cell:hover {
-      background-color: #fde7e9 !important; /* Rosso chiaro al hover */
-    }
+        .role-block {
+            background-color: white !important;
+        }
 
-    /* Stili per i permessi */
-    .None { background-color: white !important; color: #a4262c; } /* Rosso */
-    .User { background-color: white !important; color: #107c10; } /* Verde */
-    .BU { background-color: white !important; color: #d83b01; } /* Arancione */
-    .ParentChild { background-color: white !important; color: #b4009e; } /* Viola */
-    .Org { background-color: white !important; color: #0078d4; } /* Blu */
+        .delete-cell {
+            width: 15px !important;
+            padding: 0 !important;
+            text-align: center !important;
+            color: #a4262c;
+            cursor: pointer;
+        }
 
-    /* Stili per input e pulsanti */
-    .entity-input {
-      width: 100%;
-      border: 1px solid #edebe9;
-      border-radius: 2px;
-      padding: 4px 8px;
-      font-family: 'Segoe UI';
-    }
+        .delete-cell:hover {
+            background-color: #fde7e9 !important;
+        }
 
-    .entity-input:focus {
-      border-color: #0078d4;
-      outline: none;
-    }
+        .None { background-color: white !important; color: #a4262c; }
+        .User { background-color: white !important; color: #107c10; }
+        .BU { background-color: white !important; color: #d83b01; }
+        .ParentChild { background-color: white !important; color: #b4009e; }
+        .Org { background-color: white !important; color: #0078d4; }
 
-    button {
-      background-color: #0078d4;
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      margin-right: 8px;
-      border-radius: 2px;
-      font-family: 'Segoe UI';
-      font-weight: 600;
-      cursor: pointer;
-      transition: background-color 0.167s ease;
-    }
+        .entity-input {
+            width: 100%;
+            border: 1px solid #edebe9;
+            border-radius: 2px;
+            padding: 4px 8px;
+            font-family: 'Segoe UI';
+        }
 
-    button:hover {
-      background-color: #106ebe;
-    }
+        .entity-input:focus {
+            border-color: #0078d4;
+            outline: none;
+        }
 
-    button:active {
-      background-color: #005a9e;
-    }
+        button {
+            background-color: #0078d4;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            margin-right: 8px;
+            border-radius: 2px;
+            font-family: 'Segoe UI';
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.167s ease;
+        }
 
-    /* Stili per i dropdown */
-    select {
-      padding: 4px 8px;
-      border: 1px solid #edebe9;
-      border-radius: 2px;
-      font-family: 'Segoe UI';
-    }
+        button:hover {
+            background-color: #106ebe;
+        }
 
-    /* Layout generale */
-    .role-block {
-      margin-bottom: 24px;
-      background-color: white;
-      padding: 16px;
-      border-radius: 2px;
-      box-shadow: 0 1.6px 3.6px 0 rgba(0,0,0,.132), 0 0.3px 0.9px 0 rgba(0,0,0,.108);
-    }
-    
-    #rolesContainer {
-      margin-bottom: 40px; /* Assicura spazio tra l'ultimo elemento e il footer */
-    }
+        button:active {
+            background-color: #005a9e;
+        }
 
-    #footer-right {
-      width: 100%;
-      background-color: #f3f2f1;
-      text-align: center;
-      font-size: 12px;
-      color: #605e5c;
-      padding: 10px 0;
-      box-shadow: 0 -1px 3px rgba(0,0,0,0.1);
-      margin-top: auto; /* Spinge il footer in fondo */
-}
+        select {
+            padding: 4px 8px;
+            border: 1px solid #edebe9;
+            border-radius: 2px;
+            font-family: 'Segoe UI';
+        }
 
-.add-role-button-container {
-      margin-bottom: 40px;
-    }
+        .role-block {
+            margin-bottom: 24px;
+            background-color: white;
+            padding: 16px;
+            border-radius: 2px;
+            box-shadow: 0 1.6px 3.6px 0 rgba(0,0,0,.132), 0 0.3px 0.9px 0 rgba(0,0,0,.108);
+        }
+        
+        #rolesContainer {
+            margin-bottom: 40px;
+        }
 
-    /* Link */
-    a {
-      color: #0078d4;
-      text-decoration: none;
-    }
+        #footer-right {
+            width: 100%;
+            background-color: #f3f2f1;
+            text-align: center;
+            font-size: 12px;
+            color: #605e5c;
+            padding: 10px 0;
+            box-shadow: 0 -1px 3px rgba(0,0,0,0.1);
+            margin-top: auto;
+        }
 
-    a:hover {
-      text-decoration: underline;
-    }
+        .add-role-button-container {
+            margin-bottom: 40px;
+        }
 
-/* Dark mode styles */
-body.dark-mode {
-  background: #1e1e1e !important;
-  color: #ffffff;
-}
+        a {
+            color: #0078d4;
+            text-decoration: none;
+        }
 
-.dark-mode .role-block,
-.dark-mode .permissionTable td {
-  background-color: #252525 !important;
-  color: #ffffff;
-}
+        a:hover {
+            text-decoration: underline;
+        }
 
-.dark-mode .permissionTable th {
-  background-color: #333333 !important;
-  color: #ffffff;
-  border-bottom-color: #444444 !important;
-}
+        /* Dark mode styles */
+        body.dark-mode {
+            background: #1e1e1e !important;
+            color: #ffffff;
+        }
 
-.dark-mode .entity-input,
-.dark-mode select {
-  background-color: #333333;
-  color: #ffffff;
-  border-color: #444444;
-}
+        .dark-mode .role-block,
+        .dark-mode .permissionTable td {
+            background-color: #252525 !important;
+            color: #ffffff;
+        }
 
-.dark-mode .permissionTable {
-  box-shadow: 0 1.6px 3.6px 0 rgba(255,255,255,.132), 0 0.3px 0.9px 0 rgba(255,255,255,.108);
-}
+        .dark-mode .permissionTable th {
+            background-color: #333333 !important;
+            color: #ffffff;
+            border-bottom-color: #444444 !important;
+        }
 
-.dark-mode .blue-bar {
-  background: #004578 !important;
-}
+        .dark-mode .entity-input,
+        .dark-mode select {
+            background-color: #333333;
+            color: #ffffff;
+            border-color: #444444;
+        }
 
-.dark-mode #footer-right {
-  background-color: #252525;
-  color: #a6a6a6;
-}
+        .dark-mode .permissionTable {
+            box-shadow: 0 1.6px 3.6px 0 rgba(255,255,255,.132), 0 0.3px 0.9px 0 rgba(255,255,255,.108);
+        }
 
-.dark-mode a {
-  color: #4da6ff;
-}
+        .dark-mode .blue-bar {
+            background: #004578 !important;
+        }
 
-/* Stile del pulsante Toggle Dark Mode */
-#dark-mode-toggle {
-  background-color: #323130;
-  color: white;
-  border: 1px solid #605e5c;
-}
+        .dark-mode #footer-right {
+            background-color: #252525;
+            color: #a6a6a6;
+        }
 
-#dark-mode-toggle:hover {
-  background-color: #3b3a39;
-}
+        .dark-mode a {
+            color: #4da6ff;
+        }
 
-.dark-mode #dark-mode-toggle {
-  background-color: #0078d4;
-  border-color: #106ebe;
-}
+        #dark-mode-toggle {
+            background-color: #323130;
+            color: white;
+            border: 1px solid #605e5c;
+        }
 
-.dark-mode #dark-mode-toggle:hover {
-  background-color: #106ebe;
-}
-/* Stili per i label nel tema scuro */
-.dark-mode label {
-  color: #ffffff !important;
-}
+        #dark-mode-toggle:hover {
+            background-color: #3b3a39;
+        }
 
-/* Stili per i label nel tema chiaro */
-label {
-  color: #000000;
-}
-/* Label Role Name e Download Report */
-.dark-mode .role-block label {
-  color: #ffffff !important;
-}
+        .dark-mode #dark-mode-toggle {
+            background-color: #0078d4;
+            border-color: #106ebe;
+        }
 
-.role-block label {
-  color: #000000;
-}
-  </style>
-  <script src="https://cdn.jsdelivr.net/npm/exceljs@4.2.1/dist/exceljs.min.js"></script>
+        .dark-mode #dark-mode-toggle:hover {
+            background-color: #106ebe;
+        }
+
+        .dark-mode label {
+            color: #ffffff !important;
+        }
+
+        label {
+            color: #000000;
+        }
+
+        .dark-mode .role-block label {
+            color: #ffffff !important;
+        }
+
+        .role-block label {
+            color: #000000;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/exceljs@4.2.1/dist/exceljs.min.js"></script>
 </head>
 <body>
     <div id="main-content">
-  <p style="text-align: right; margin-bottom: 16px;">
-    <a href="https://learn.microsoft.com/en-us/power-platform/admin/security-roles-privileges?tabs=new" target="_blank">What do these permissions mean?</a>
-  </p>  
-  <div style="margin-bottom: 20px;">
-    <button onclick="exportTableToExcel()" title="Creates an Excel file with the permissions table">Export as Excel</button>
-    <button onclick="copyToMA()" title="Copies the permissions table to clipboard">Copy to MA</button>
-    <button onclick="exportToJSON()" title="Creates a JSON file to be used with Sniipy">Export as JSON</button>
-    <button onclick="importFromJSON()" title="Import a .json file with roles and permissions to create tables instantly">Import JSON</button>
-    <button onclick="importBasicUser()" title="Import the standard Basic User role permissions">Import Basic User</button>
-    <button id="dark-mode-toggle" onclick="toggleDarkMode()" title="Toggle dark/light mode" style="float: right;">👁️ Toggle Dark/Light Mode</button>
-  </div>
+        <p style="text-align: right; margin-bottom: 16px;">
+            <a href="https://learn.microsoft.com/en-us/power-platform/admin/security-roles-privileges?tabs=new" target="_blank">What do these permissions mean?</a>
+        </p>  
+        <div style="margin-bottom: 20px;">
+            <button onclick="exportTableToExcel()" title="Creates an Excel file with the permissions table">Export as Excel</button>
+            <button onclick="copyToMA()" title="Copies the permissions table to clipboard">Copy to MA</button>
+            <button onclick="exportToJSON()" title="Creates a JSON file to be used with Sniipy">Export as JSON</button>
+            <button onclick="importFromJSON()" title="Import a .json file with roles and permissions to create tables instantly">Import JSON</button>
+            <button onclick="importBasicUser()" title="Import the standard Basic User role permissions">Import Basic User</button>
+            <button id="dark-mode-toggle" onclick="toggleDarkMode()" title="Toggle dark/light mode" style="float: right;">👁️ Toggle Dark/Light Mode</button>
+        </div>
 
-  <div class="blue-bar">
-    <h2>D365 Permission Planner</h2>
-  </div>
+        <div class="blue-bar">
+            <h2>D365 Permission Planner</h2>
+        </div>
 
-  <div style="margin-bottom: 16px;">
-    <label for="projectName" style="display: block; margin-bottom: 4px; font-weight: 600;">Project Name:</label>
-    <input type="text" id="projectName" placeholder="Enter Project Name" 
-           style="width: 100%; max-width: 300px; padding: 6px 8px; border: 1px solid #edebe9; border-radius: 2px;" required />
-  </div>
+        <div style="margin-bottom: 16px;">
+            <label for="projectName" style="display: block; margin-bottom: 4px; font-weight: 600;">Project Name:</label>
+            <input type="text" id="projectName" placeholder="Enter Project Name" 
+                style="width: 100%; max-width: 300px; padding: 6px 8px; border: 1px solid #edebe9; border-radius: 2px;" required />
+        </div>
 
-  <div id="rolesContainer">
-    <div class="role-block">
-      <label style="font-family: Segoe UI; color: rgb(0, 0, 0)">Role Name: <input type="text" class="role-name" placeholder="Enter Role Name" style="width: 20%; padding: 8px; margin: 10px 0; font-family: Segoe UI" /></label>
-      <br>
-<label style="font-family: Segoe UI; color: black">Download Report:
-  <select class="download-choice" style="padding: 5px; font-family: Segoe UI;">
-    <option value="yes" selected>Yes</option>
-    <option value="no">No</option>
-  </select>
-</label>
-<br>
-<table class="permissionTable">
-  <thead>
-      <tr>
-          <th style="width: 15px;"></th>
-          <th style="width: 15px;"></th>
-          <th>Entity</th>
-          <th>Create</th>
-          <th>Read</th>
-          <th>Write</th>
-          <th>Delete</th>
-          <th>Append</th>
-          <th>Append To</th>
-          <th>Assign</th>
-          <th>Share</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td class="delete-cell" onclick="if(confirm('Are you sure you want to delete this row?')){this.parentElement.remove()}" title = "Delete this row">❌</td>
-          <td class="upgrade-cell" onclick="upgradePermissions(this.parentElement)" title="Upgrade all permissions +1 level">⏫</td>
-          <td><input class="entity-input" type="text" placeholder="Enter Entity Name"/></td>
-          <td onclick="cyclePermission(this)" class="None">None 🚫</td>
-          <td onclick="cyclePermission(this)" class="None">None 🚫</td>
-          <td onclick="cyclePermission(this)" class="None">None 🚫</td>
-          <td onclick="cyclePermission(this)" class="None">None 🚫</td>
-          <td onclick="cyclePermission(this)" class="None">None 🚫</td>
-          <td onclick="cyclePermission(this)" class="None">None 🚫</td>
-          <td onclick="cyclePermission(this)" class="None">None 🚫</td>
-          <td onclick="cyclePermission(this)" class="None">None 🚫</td>
-      </tr>
-  </tbody>
-</table>
-      <button onclick="addRow(this.closest('.role-block').querySelector('table'))" title="Adds a new permissions row to the table">Add Row</button>
-      
-      <button onclick="removeTable(this.closest('.role-block'))" title ="Removes permanently the entire table">Remove Table</button>
-    </div>
-  </div>
-
-  <br>
-  <div style="margin: 20px 0 40px 0;" class="add-role-button-container">
-    <button onclick="addNewRole()" title="Creates a new security role with associated permissions">Add new role</button>
-  </div>
-</div>
-
-
-  <script>
-    const states = [
-  { class: 'None', label: 'None 🚫' },
-  { class: 'User', label: 'User 👤' },
-  { class: 'BU', label: 'BU 💼' },
-  { class: 'ParentChild', label: 'Parent: Child BU 🏭' },
-  { class: 'Org', label: 'Org. 🌎' },
-];
-
-    function cyclePermission(cell) {
-      let currentStateIndex = states.findIndex(s => cell.classList.contains(s.class));
-      cell.className = '';
-      currentStateIndex = (currentStateIndex + 1) % states.length;
-      const nextState = states[currentStateIndex];
-      cell.classList.add(nextState.class);
-      cell.textContent = nextState.label;
-    }
-
-    //function addRow(table = null) {
-    //if (!table) {
-    //    table = document.querySelector('.permissionTable');
-   // }
-
-    const tbody = table.querySelector('tbody');
-    const row = tbody.insertRow();
-    
-    // Aggiungi cella di eliminazione
-    const deleteCell = row.insertCell();
-    deleteCell.innerHTML = '❌';
-    deleteCell.className = 'delete-cell';
-    deleteCell.onclick = function() {
-        if (confirm('Are you sure you want to delete this row?')) {
-            row.remove();
-        }
-    };
-
-    function addRow(table = null) {
-    if (!table) {
-        table = document.querySelector('.permissionTable');
-    }
-
-    const tbody = table.querySelector('tbody');
-    const row = tbody.insertRow();
-    
-    // Cella "Delete" (❌)
-    const deleteCell = row.insertCell();
-    deleteCell.innerHTML = '❌';
-    deleteCell.className = 'delete-cell';
-    deleteCell.onclick = function() {
-        if (confirm('Are you sure you want to delete this row?')) {
-            row.remove();
-        }
-    };
-
-    // Nuova cella "Upgrade"
-    const upgradeCell = row.insertCell();
-    upgradeCell.innerHTML = '⏫';
-    upgradeCell.className = 'upgrade-cell';
-    upgradeCell.onclick = function() {
-        upgradePermissions(row);
-    };
-
-    // Cella "Entity" (input)
-    const entityCell = row.insertCell();
-    const input = document.createElement('input');
-    input.type = 'text';
-    input.className = 'entity-input';
-    input.placeholder = 'Enter Entity';
-    entityCell.appendChild(input);
-
-    // Aggiungi le celle dei permessi (8 colonne)
-    for (let i = 0; i < 8; i++) {
-        const cell = row.insertCell();
-        cell.onclick = function () { cyclePermission(cell); };
-        cell.className = 'None';
-        cell.textContent = 'None 🚫';
-        cell.style.cursor = 'pointer';
-        cell.style.userSelect = 'none';
-    }
-}
-    const entityCell = row.insertCell();
-    const input = document.createElement('input');
-    input.type = 'text';
-    input.className = 'entity-input';
-    input.placeholder = 'Enter Entity';
-    entityCell.appendChild(input);
-
-    for (let i = 0; i < 8; i++) {
-        const cell = row.insertCell();
-        cell.onclick = function () { cyclePermission(cell); };
-        cell.className = 'None';
-        cell.textContent = 'None 🚫';
-
-        cell.style.cursor = 'pointer';
-        cell.style.userSelect = 'none';
-        cell.style.webkitUserSelect = 'none';
-        cell.style.mozUserSelect = 'none';
-        cell.style.msUserSelect = 'none';
-    }
-
-    function toggleDarkMode() {
-  document.body.classList.toggle('dark-mode');
-  
-  // Salva la preferenza dell'utente in localStorage
-  const isDarkMode = document.body.classList.contains('dark-mode');
-  localStorage.setItem('darkMode', isDarkMode);
-}
-
-// Controlla la preferenza salvata al caricamento della pagina
-document.addEventListener('DOMContentLoaded', function() {
-  const darkMode = localStorage.getItem('darkMode') === 'true';
-  if (darkMode) {
-    document.body.classList.add('dark-mode');
-  }
-});
-
-function upgradePermissions(row) {
-    // Se viene passato direttamente il td (click sul pulsante), risali al tr
-    const targetRow = row.tagName === 'TR' ? row : row.closest('tr');
-    
-    const permissionCells = targetRow.querySelectorAll('td:not(.delete-cell):not(.upgrade-cell):not(:has(input))');
-    
-    permissionCells.forEach(cell => {
-        let currentStateIndex = states.findIndex(s => cell.classList.contains(s.class));
-        let nextStateIndex = (currentStateIndex + 1) % states.length;
-        
-        //if (currentStateIndex === states.length - 1) return;
-        
-        const nextState = states[nextStateIndex];
-        cell.className = nextState.class;
-        cell.textContent = nextState.label;
-    });
-}
-
-function importBasicUser() {
-    // Percorso del file JSON standard
-    const jsonUrl = 'Standard_Basic_User.json';
-    
-    // Effettua la richiesta per ottenere il JSON
-    fetch(jsonUrl)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            // Pulisci il container dei ruoli
-            document.getElementById('rolesContainer').innerHTML = '';
-            
-            // Processa i dati come nella funzione importFromJSON
-            data.forEach(roleData => {
-                const block = document.createElement('div');
-                block.className = "role-block";
-                document.getElementById('rolesContainer').appendChild(block);
-                
-                // Aggiungi nome ruolo
-                const roleNameLabel = document.createElement("label");
-                roleNameLabel.innerHTML = 'Role Name: ';
-                roleNameLabel.style.fontFamily = "Segoe UI";
-                
-                const roleNameInput = document.createElement("input");
-                roleNameInput.className = "role-name";
-                roleNameInput.type = "text";
-                roleNameInput.placeholder = "Enter Role Name";
-                roleNameInput.value = roleData.name || 'Basic User';
-                roleNameInput.style.width = "20%";
-                roleNameInput.style.padding = "8px";
-                roleNameInput.style.margin = "10px 0";
-                
-                block.appendChild(roleNameLabel);
-                block.appendChild(roleNameInput);
-                
-                // Aggiungi download report
-                const downloadLabel = document.createElement("label");
-                downloadLabel.innerHTML = 'Download Report: ';
-                downloadLabel.style.color = "black";
-                downloadLabel.style.fontFamily = "Segoe UI";
-                
-                const downloadSelect = document.createElement("select");
-                downloadSelect.className = "download-choice";
-                downloadSelect.innerHTML = `
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                `;
-                
-                block.appendChild(document.createElement("br"));
-                block.appendChild(downloadLabel);
-                block.appendChild(downloadSelect);
-                
-                // Crea tabella
-                const table = document.createElement("table");
-                table.className = "permissionTable";
-                table.innerHTML = `
+        <div id="rolesContainer">
+            <div class="role-block">
+                <label style="font-family: Segoe UI; color: rgb(0, 0, 0)">Role Name: <input type="text" class="role-name" placeholder="Enter Role Name" style="width: 20%; padding: 8px; margin: 10px 0; font-family: Segoe UI" /></label>
+                <br>
+                <label style="font-family: Segoe UI; color: black">Download Report:
+                    <select class="download-choice" style="padding: 5px; font-family: Segoe UI;">
+                        <option value="yes" selected>Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </label>
+                <br>
+                <table class="permissionTable">
                     <thead>
                         <tr>
-                            <th>Delete</th>
-                            <th>Upgrade</th>
+                            <th style="width: 15px;"></th>
+                            <th style="width: 15px;"></th>
                             <th>Entity</th>
                             <th>Create</th>
                             <th>Read</th>
@@ -581,716 +334,852 @@ function importBasicUser() {
                             <th>Share</th>
                         </tr>
                     </thead>
-                    <tbody></tbody>
-                `;
-                block.appendChild(table);
-                
-                // Aggiungi pulsanti
-                const addRowBtn = document.createElement("button");
-                addRowBtn.textContent = "Add Row";
-                addRowBtn.onclick = function() { addRow(table); };
-                block.appendChild(addRowBtn);
-                
-                const removeTableBtn = document.createElement("button");
-                removeTableBtn.textContent = "Remove Table";
-                removeTableBtn.onclick = function() { removeTable(block); };
-                block.appendChild(removeTableBtn);
-                
-                // Popola le righe
-                const tbody = table.querySelector('tbody');
-                roleData.rows.forEach(rowData => {
-                    const row = tbody.insertRow();
-                    
-                    // Aggiungi cella di eliminazione
-                    const deleteCell = row.insertCell();
-                    deleteCell.innerHTML = '❌';
-                    deleteCell.className = 'delete-cell';
-                    deleteCell.onclick = function() {
-                        if (confirm('Are you sure you want to delete this row?')) {
-                            row.remove();
-                        }
-                    };
-                    
-                    // Aggiungi cella di upgrade
-                    const upgradeCell = row.insertCell();
-                    upgradeCell.innerHTML = '⏫';
-                    upgradeCell.className = 'upgrade-cell';
-                    upgradeCell.onclick = function() {
-                        upgradePermissions(row);
-                    };
-                    
-                    // Aggiungi entity
-                    const entityCell = row.insertCell();
-                    const entityInput = document.createElement("input");
-                    entityInput.className = "entity-input";
-                    entityInput.type = "text";
-                    entityInput.value = rowData.entity || '';
-                    entityCell.appendChild(entityInput);
-                    
-                    // Aggiungi permessi
-                    const permissions = ['Create', 'Read', 'Write', 'Delete', 'Append', 'Append To', 'Assign', 'Share'];
-                    permissions.forEach((perm, index) => {
-                        const cell = row.insertCell();
-                        cell.style.cursor = 'pointer';
-                        cell.style.userSelect = 'none';
-                        cell.onclick = function() { cyclePermission(cell); };
-                        const permValue = rowData.privileges[index] !== undefined ? rowData.privileges[index] : 0;
-                        setPermission(cell, permValue);
-                    });
-                });
-            });
-        })
-        .catch(error => {
-            console.error('Error loading Basic User JSON:', error);
-            alert('Error loading Basic User permissions. Please make sure the file "Standard_Basic_User.json" exists in the root directory.');
-        });
-}
+                    <tbody>
+                        <tr>
+                            <td class="delete-cell" onclick="if(confirm('Are you sure you want to delete this row?')){this.parentElement.remove()}" title="Delete this row">❌</td>
+                            <td class="upgrade-cell" onclick="upgradePermissions(this.parentElement)" title="Upgrade all permissions +1 level">⏫</td>
+                            <td><input class="entity-input" type="text" placeholder="Enter Entity Name"/></td>
+                            <td onclick="cyclePermission(this)" class="None">None 🚫</td>
+                            <td onclick="cyclePermission(this)" class="None">None 🚫</td>
+                            <td onclick="cyclePermission(this)" class="None">None 🚫</td>
+                            <td onclick="cyclePermission(this)" class="None">None 🚫</td>
+                            <td onclick="cyclePermission(this)" class="None">None 🚫</td>
+                            <td onclick="cyclePermission(this)" class="None">None 🚫</td>
+                            <td onclick="cyclePermission(this)" class="None">None 🚫</td>
+                            <td onclick="cyclePermission(this)" class="None">None 🚫</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button onclick="addRow(this.closest('.role-block').querySelector('table'))" title="Adds a new permissions row to the table">Add Row</button>
+                <button onclick="removeTable(this.closest('.role-block'))" title="Removes permanently the entire table">Remove Table</button>
+            </div>
+        </div>
 
-    function removeLastRow(table) {
-      const tbody = table.querySelector('tbody');
-      if (tbody.rows.length > 0) {
-        tbody.deleteRow(tbody.rows.length - 1);
-      }
-    }
+        <br>
+        <div style="margin: 20px 0 40px 0;" class="add-role-button-container">
+            <button onclick="addNewRole()" title="Creates a new security role with associated permissions">Add new role</button>
+        </div>
+    </div>
 
-    function removeTable(block) {
-      block.remove();
-    }
+    <script>
+        const states = [
+            { class: 'None', label: 'None 🚫' },
+            { class: 'User', label: 'User 👤' },
+            { class: 'BU', label: 'BU 💼' },
+            { class: 'ParentChild', label: 'Parent: Child BU 🏭' },
+            { class: 'Org', label: 'Org. 🌎' },
+        ];
 
-    function exportTableToExcel() {
-  const workbook = new ExcelJS.Workbook();
-  const worksheet = workbook.addWorksheet('Permissions');
-
-  // Definizione degli stili per ciascun tipo di cella
-  const cellStyles = {
-    Org: {
-      fill: { type: 'pattern', pattern:'solid', fgColor: { argb: 'FF008000' } }, // Verde
-      font: { color: { argb: 'FFFFFFFF' }, bold: true },
-    },
-    ParentChild: {
-      fill: { type: 'pattern', pattern:'solid', fgColor: { argb: 'FF90EE90' } }, // Verde chiaro
-      font: { color: { argb: 'FF000000' } },
-    },
-    BU: {
-      fill: { type: 'pattern', pattern:'solid', fgColor: { argb: 'FFFFA500' } }, // Arancione
-      font: { color: { argb: 'FF000000' } },
-    },
-    User: {
-      fill: { type: 'pattern', pattern:'solid', fgColor: { argb: 'FFFFE4B5' } }, // Moccasin
-      font: { color: { argb: 'FF000000' } },
-    },
-    None: {
-      fill: { type: 'pattern', pattern:'solid', fgColor: { argb: 'FFFF0000' } }, // Rosso
-      font: { color: { argb: 'FFFFFFFF' }, bold: true },
-    },
-    header: {
-      fill: { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFD3D3D3' } }, // Grigio chiaro
-      font: { bold: true, color: { argb: 'FF000000' } }, // Grassetto e testo nero
-    },
-    roleName: {
-      font: { bold: true, size: 14, color: { argb: 'FF0078D4' } }, // Blu Fluent, grassetto
-      alignment: { horizontal: 'left', vertical: 'middle' }
-    },
-    downloadLabel: {
-      font: { bold: true, color: { argb: 'FF323130' } } // Testo scuro grassetto
-    },
-    downloadValue: {
-      font: { italic: true, color: { argb: 'FF605E5C' } } // Testo grigio chiaro
-    }
-  };
-
-  const roleBlocks = document.querySelectorAll('.role-block');
-
-  roleBlocks.forEach((block, index) => {
-    const roleName = block.querySelector('input[type="text"]').value || `Role ${index + 1}`;
-    const downloadChoice = block.querySelector('.download-choice')?.value || "Yes";
-    const table = block.querySelector('table');
-
-    // Aggiungi il nome del ruolo con formattazione
-    const roleNameRow = worksheet.addRow([roleName]);
-    roleNameRow.eachCell(cell => {
-      cell.style = cellStyles.roleName;
-      cell.border = { bottom: { style: 'small', color: { argb: 'FF0078D4' } } };
-    });
-
-    // Aggiungi il nome del ruolo e il valore "Download Report"
-    //worksheet.addRow([roleName]);
-    worksheet.addRow(["Download Report:", downloadChoice]);
-
-    // Aggiungi l'intestazione della tabella (escludendo la colonna "Delete")
-    const headers = [];
-    table.querySelectorAll('thead th').forEach((th, idx) => {
-      if (idx >= 2) headers.push(th.textContent.trim()); // Salta la prima colonna (Delete)
-    });
-    const headerRow = worksheet.addRow(headers);
-
-    // Applica lo stile per l'intestazione
-    headerRow.eachCell((cell) => {
-      cell.style = cellStyles.header;
-    });
-
-    // Aggiungere i dati delle righe (escludendo la colonna "Delete e Upgrade")
-    const rows = table.querySelectorAll('tbody tr');
-    rows.forEach(row => {
-      const rowData = [];
-      row.querySelectorAll('td').forEach((td, i) => {
-        if (i === 2) { // Entity è ora nella seconda colonna (i=2)
-          const input = td.querySelector('input');
-          rowData.push(input ? input.value : '');
-        } else if (i > 1) { // Le colonne dei permessi iniziano da i=2
-          rowData.push(td.textContent.trim());
+        function cyclePermission(cell) {
+            let currentStateIndex = states.findIndex(s => cell.classList.contains(s.class));
+            cell.className = '';
+            currentStateIndex = (currentStateIndex + 1) % states.length;
+            const nextState = states[currentStateIndex];
+            cell.classList.add(nextState.class);
+            cell.textContent = nextState.label;
         }
-      });
-      worksheet.addRow(rowData);
-    });
 
-    // Aggiungi una riga vuota dopo ogni blocco di ruolo
-    worksheet.addRow([]);
-  });
+        function addRow(table = null) {
+            if (!table) {
+                table = document.querySelector('.permissionTable');
+            }
 
-  // Applicazione dei colori alle celle
-  worksheet.eachRow((row, rowIndex) => {
-    row.eachCell((cell, colIndex) => {
-      const content = cell.value;
-
-      // Applicazione degli stili in base al contenuto della cella
-      if (content === "Org.") {
-        cell.style = cellStyles.Org;
-      } else if (content === "Parent: Child BU") {
-        cell.style = cellStyles.ParentChild;
-      } else if (content === "BU") {
-        cell.style = cellStyles.BU;
-      } else if (content === "User") {
-        cell.style = cellStyles.User;
-      } else if (content === "None") {
-        cell.style = cellStyles.None;
-      }
-    });
-  });
-
-  // Salvataggio del file Excel
-  workbook.xlsx.writeBuffer().then(function(buffer) {
-    const projectName = document.getElementById("projectName").value.trim();
-    const finalFileName = projectName ? `${projectName}.xlsx` : "permissions.xlsx";
-
-    const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = finalFileName;
-    link.click();
-  });
-}
-
-
-function copyToMA() {
-    // 1. Prepara il contenuto HTML
-    let htmlContent = `
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <meta charset="UTF-8">
-            <title>D365 Permission Planner Export</title>
-            <style>
-                /* Importa tutti gli stili Fluent UI */
-                body { 
-                    font-family: 'Segoe UI', sans-serif;
-                    background: #f3f2f1;
-                    padding: 20px;
-                    color: #323130;
-                }
-                .role-block {
-                    background: white;
-                    padding: 16px;
-                    margin-bottom: 24px;
-                    border-radius: 2px;
-                    box-shadow: 0 1.6px 3.6px rgba(0,0,0,0.132);
-                }
-                .permissionTable {
-                    width: 100%;
-                    border-collapse: collapse;
-                    margin-bottom: 20px;
-                }
-                .permissionTable th {
-                    background: #faf9f8;
-                    padding: 8px;
-                    border-bottom: 1px solid #edebe9;
-                }
-                .permissionTable td {
-                    padding: 8px;
-                    border-bottom: 1px solid #edebe9;
-                    text-align: center;
-                }
-                /* Stili dei permessi */
-                .None { color: #a4262c; }
-                .User { color: #107c10; }
-                .BU { color: #d83b01; }
-                .ParentChild { color: #b4009e; }
-                .Org { color: #0078d4; }
-            </style>
-        </head>
-        <body>
-            <h2 style="color: #0078d4;">${escapeHtml(document.getElementById('projectName').value || 'D365 Permission Planner Export')}</h2>
-    `;
-
-    // 2. Processa ogni ruolo
-    document.querySelectorAll('.role-block').forEach(block => {
-        const roleName = block.querySelector('.role-name').value || 'Unnamed Role';
-        const downloadChoice = block.querySelector('.download-choice').value || 'No';
-        const table = block.querySelector('.permissionTable');
-
-        // 3. Aggiungi intestazione del ruolo
-        htmlContent += `
-            <div class="role-block">
-                <h3 style="color: #0078d4; margin-top: 0;">${escapeHtml(roleName)}</h3>
-                <p><strong>Download Report:</strong> ${escapeHtml(downloadChoice)}</p>
-        `;
-
-        // 4. Processa la tabella (escludendo solo Delete e Upgrade)
-        if (table) {
-            htmlContent += '<table class="permissionTable"><thead><tr>';
+            const tbody = table.querySelector('tbody');
+            const row = tbody.insertRow();
             
-            // Intestazioni (salta Delete=0 e Upgrade=1)
-            table.querySelectorAll('thead th').forEach((th, index) => {
-                if (index >= 2) {
-                    htmlContent += `<th>${escapeHtml(th.textContent.trim())}</th>`;
-                }
-            });
-            htmlContent += '</tr></thead><tbody>';
-
-            // Righe
-            table.querySelectorAll('tbody tr').forEach(tr => {
-                htmlContent += '<tr>';
-                tr.querySelectorAll('td').forEach((td, index) => {
-                    // Entity (index=2)
-                    if (index === 2) {
-                        const input = td.querySelector('input');
-                        htmlContent += `<td>${escapeHtml(input?.value || '')}</td>`;
-                    } 
-                    // Permessi (index>=3)
-                    else if (index >= 3) {
-                        const cellClass = Array.from(td.classList).find(c => 
-                            ['None', 'User', 'BU', 'ParentChild', 'Org'].includes(c)
-                        ) || '';
-                        htmlContent += `<td class="${cellClass}">${escapeHtml(td.textContent.trim())}</td>`;
-                    }
-                });
-                htmlContent += '</tr>';
-            });
-            
-            htmlContent += '</tbody></table></div>';
-        }
-    });
-
-    htmlContent += '</body></html>';
-
-    // 5. Copia negli appunti
-    copyHtmlToClipboard(htmlContent);
-}
-
-// Funzione per copiare HTML alla clipboard
-function copyHtmlToClipboard(html) {
-    // Crea un elemento nascosto
-    const tempDiv = document.createElement('div');
-    tempDiv.style.position = 'fixed';
-    tempDiv.style.left = '-9999px';
-    tempDiv.innerHTML = html;
-    document.body.appendChild(tempDiv);
-
-    // Seleziona il contenuto
-    const range = document.createRange();
-    range.selectNode(tempDiv);
-    window.getSelection().removeAllRanges();
-    window.getSelection().addRange(range);
-
-    // Esegui la copia
-    try {
-        document.execCommand('copy');
-        showSuccessNotification();
-    } catch (err) {
-        console.error("Copy failed:", err);
-        // Fallback alternativo
-        const blob = new Blob([html], { type: 'text/html' });
-        const item = new ClipboardItem({ 'text/html': blob });
-        navigator.clipboard.write([item])
-            .then(() => showSuccessNotification())
-            .catch(() => offerManualDownload(html));
-    } finally {
-        // Pulizia
-        document.body.removeChild(tempDiv);
-        window.getSelection().removeAllRanges();
-    }
-}
-
-// Funzioni di supporto
-function escapeHtml(text) {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-}
-
-function showSuccessNotification() {
-    // ... (come nella versione precedente)
-}
-
-function offerManualDownload(html) {
-    // ... (come nella versione precedente)
-}
-
-
-    function addNewRole() {
-    const allTables = document.querySelectorAll("table");
-    const lastTable = allTables[allTables.length - 1];
-
-    const block = document.createElement('div');
-    block.className = "role-block";
-    block.style.marginTop = "30px";
-    document.getElementById("rolesContainer").appendChild(block);
-
-    // Aggiungi nome ruolo
-    const roleNameLabel = document.createElement("label");
-    roleNameLabel.textContent = "Role Name: ";
-   // roleNameLabel.style.color = "black";
-    roleNameLabel.style.fontFamily = "Segoe UI";
-    const roleNameInput = document.createElement("input");
-    roleNameInput.className = "role-name";
-    roleNameInput.type = "text";
-    roleNameInput.placeholder = "Enter Role Name";
-    roleNameInput.style.width = "20%";
-    roleNameInput.style.padding = "8px";
-    roleNameInput.style.margin = "10px 0";
-
-    block.appendChild(roleNameLabel);
-    block.appendChild(roleNameInput);
-
-    const br = document.createElement("br");
-    block.appendChild(br);
-
-    // Aggiungi download report
-    const downloadLabel = document.createElement("label");
-    downloadLabel.style.fontFamily = "Segoe UI";
-    downloadLabel.style.color = "black";
-    downloadLabel.innerHTML = `Download Report:
-        <select class="download-choice" style="padding: 6px; font-family: Segoe UI; margin-left: 10px;">
-            <option value="Yes" selected>Yes</option>
-            <option value="No">No</option>
-        </select>`;
-    block.appendChild(downloadLabel);
-
-    // Crea la nuova tabella SOLO con l'intestazione
-    const newTable = document.createElement("table");
-    newTable.className = "permissionTable";
-    newTable.innerHTML = `
-        <thead>
-            <tr>
-                <th>Delete</th>
-                <th>Upgrade</th>
-                <th>Entity</th>
-                <th>Create</th>
-                <th>Read</th>
-                <th>Write</th>
-                <th>Delete</th>
-                <th>Append</th>
-                <th>Append To</th>
-                <th>Assign</th>
-                <th>Share</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    `;
-
-    block.appendChild(newTable);
-
-    // Aggiungi pulsanti
-    const addRowBtn = document.createElement("button");
-    addRowBtn.textContent = "Add Row";
-    addRowBtn.style.marginTop = "10px";
-    addRowBtn.onclick = () => addRow(newTable);
-    block.appendChild(addRowBtn);
-
-    const removeTableBtn = document.createElement("button");
-    removeTableBtn.textContent = "Remove Table";
-    removeTableBtn.style.marginTop = "10px";
-    removeTableBtn.onclick = () => removeTable(block);
-    block.appendChild(removeTableBtn);
-    
-    // Copia le righe dalla tabella precedente (se esistono)
-    const prevRows = lastTable.querySelectorAll("tbody tr");
-    const tbody = newTable.querySelector("tbody");
-
-    // Se non ci sono righe precedenti, aggiungi una riga vuota
-    if (prevRows.length === 0) {
-        addRow(newTable);
-    } else {
-        prevRows.forEach(row => {
-            const newRow = tbody.insertRow();
-            
-            // Aggiungi cella di eliminazione
-            const deleteCell = newRow.insertCell();
+            // Cella "Delete" (❌)
+            const deleteCell = row.insertCell();
             deleteCell.innerHTML = '❌';
             deleteCell.className = 'delete-cell';
             deleteCell.onclick = function() {
                 if (confirm('Are you sure you want to delete this row?')) {
-                    newRow.remove();
+                    row.remove();
                 }
             };
 
-            // Aggiungi cella di upgrade
-            const upgradeCell = newRow.insertCell();
+            // Nuova cella "Upgrade"
+            const upgradeCell = row.insertCell();
             upgradeCell.innerHTML = '⏫';
             upgradeCell.className = 'upgrade-cell';
             upgradeCell.onclick = function() {
-                upgradePermissions(newRow);
+                upgradePermissions(row);
             };
 
-            // Copia le altre celle
-            for (let i = 2; i < row.cells.length; i++) {
-                const oldCell = row.cells[i];
-                const newCell = newRow.insertCell();
+            // Cella "Entity" (input)
+            const entityCell = row.insertCell();
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.className = 'entity-input';
+            input.placeholder = 'Enter Entity';
+            entityCell.appendChild(input);
 
-                if (i === 2) { // Entity
-                    const input = document.createElement("input");
-                    input.type = "text";
-                    input.className = "entity-input";
-                    input.placeholder = "Enter Entity";
-                    input.value = oldCell.querySelector("input")?.value || "";
-                    newCell.appendChild(input);
-                } else { // Permessi
-                    newCell.textContent = oldCell.textContent;
-                    newCell.className = oldCell.className;
-                    newCell.style.cursor = 'pointer';
-                    newCell.onclick = function() {
-                        cyclePermission(newCell);
-                    };
-                }
+            // Aggiungi le celle dei permessi (8 colonne)
+            for (let i = 0; i < 8; i++) {
+                const cell = row.insertCell();
+                cell.onclick = function () { cyclePermission(cell); };
+                cell.className = 'None';
+                cell.textContent = 'None 🚫';
+                cell.style.cursor = 'pointer';
+                cell.style.userSelect = 'none';
             }
-        });
-    }
-}
-    
-function exportToJSON() {
-    const roleBlocks = document.querySelectorAll(".role-block");
-    const data = [];
+        }
 
-    const permissionMap = {
-        "None 🚫": 0,
-        "User 👤": 1,
-        "BU 💼": 2,
-        "Parent: Child BU 🏭": 4,
-        "Org. 🌎": 8
-    };
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDarkMode);
+        }
 
-    roleBlocks.forEach(block => {
-        const roleName = block.querySelector("input.role-name")?.value.trim() || "No Role Name";
-        const downloadChoice = block.querySelector(".download-choice")?.value || "Yes";
-        const table = block.querySelector(".permissionTable");
-        if (!table) return;
-
-        const tbody = table.querySelector("tbody");
-        if (!tbody) return;
-
-        const rows = [];
-        const trRows = tbody.querySelectorAll("tr");
-
-        trRows.forEach(tr => {
-            // Entity è nella terza colonna (indice 2)
-            const entityInput = tr.querySelector("td:nth-child(3) input.entity-input");
-            const entityName = entityInput ? entityInput.value.trim() : "";
-
-            const tds = tr.querySelectorAll("td");
-            const privileges = [];
-
-            // I permessi iniziano dalla 4a colonna (Create) all'11a colonna (Share)
-            for (let i = 3; i <= 10; i++) { // Da Create (4a colonna) a Share (11a colonna)
-                if (tds[i]) { // Controllo sicurezza
-                    const text = tds[i].innerText.trim();
-                    const value = permissionMap[text] ?? 0;
-                    privileges.push(value);
-                }
-            }
-
-            if (entityName) {
-                rows.push({
-                    entity: entityName,
-                    privileges: privileges
-                });
+        document.addEventListener('DOMContentLoaded', function() {
+            const darkMode = localStorage.getItem('darkMode') === 'true';
+            if (darkMode) {
+                document.body.classList.add('dark-mode');
             }
         });
 
-        data.push({
-            name: roleName,
-            //downloadReport: downloadChoice,
-            rows: rows
-        });
-    });
+        function upgradePermissions(row) {
+            const targetRow = row.tagName === 'TR' ? row : row.closest('tr');
+            const permissionCells = targetRow.querySelectorAll('td:not(.delete-cell):not(.upgrade-cell):not(:has(input))');
+            
+            permissionCells.forEach(cell => {
+                let currentStateIndex = states.findIndex(s => cell.classList.contains(s.class));
+                let nextStateIndex = (currentStateIndex + 1) % states.length;
+                const nextState = states[nextStateIndex];
+                cell.className = nextState.class;
+                cell.textContent = nextState.label;
+            });
+        }
 
-    const projectName = document.getElementById("projectName").value.trim();
-    const fileName = projectName ? `${projectName}_roles.json` : "roles.json";
-    
-    const json = JSON.stringify(data, null, 2);
-    const blob = new Blob([json], { type: "application/json" });
-    const link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.download = fileName;
-    link.click();
-}
-
-function importFromJSON() {
-    const fileInput = document.createElement('input');
-    fileInput.type = 'file';
-    fileInput.accept = '.json';
-    fileInput.onchange = function(e) {
-        const file = e.target.files[0];
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            try {
-                const data = JSON.parse(e.target.result);
-                document.getElementById('rolesContainer').innerHTML = '';
-                
-                data.forEach(roleData => {
-                    const block = document.createElement('div');
-                    block.className = "role-block";
-                    document.getElementById('rolesContainer').appendChild(block);
+        function importBasicUser() {
+            const jsonUrl = 'Standard_Basic_User.json';
+            
+            fetch(jsonUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    document.getElementById('rolesContainer').innerHTML = '';
                     
-                    // Aggiungi nome ruolo
-                    const roleNameLabel = document.createElement("label");
-                    roleNameLabel.innerHTML = 'Role Name: ';
-                    //roleNameLabel.style.color = "black";
-                    roleNameLabel.style.fontFamily = "Segoe UI";
-                    
-                    const roleNameInput = document.createElement("input");
-                    roleNameInput.className = "role-name";
-                    roleNameInput.type = "text";
-                    roleNameInput.placeholder = "Enter Role Name";
-                    roleNameInput.value = roleData.name || '';
-                    roleNameInput.style.width = "20%";
-                    roleNameInput.style.padding = "8px";
-                    roleNameInput.style.margin = "10px 0";
-                    
-                    block.appendChild(roleNameLabel);
-                    block.appendChild(roleNameInput);
-                    
-                    // Aggiungi download report
-                    const downloadLabel = document.createElement("label");
-                    downloadLabel.innerHTML = 'Download Report: ';
-                    downloadLabel.style.color = "black";
-                    downloadLabel.style.fontFamily = "Segoe UI";
-                    
-                    const downloadSelect = document.createElement("select");
-                    downloadSelect.className = "download-choice";
-                    downloadSelect.innerHTML = `
-                        <option value="yes">Yes</option>
-                        <option value="no">No</option>
-                    `;
-                    
-                    block.appendChild(document.createElement("br"));
-                    block.appendChild(downloadLabel);
-                    block.appendChild(downloadSelect);
-                    
-                    // Crea tabella
-                    const table = document.createElement("table");
-                    table.className = "permissionTable";
-                    table.innerHTML = `
-                        <thead>
-                            <tr>
-                                <th>Delete</th>
-                                <th>Entity</th>
-                                <th>Create</th>
-                                <th>Read</th>
-                                <th>Write</th>
-                                <th>Delete</th>
-                                <th>Append</th>
-                                <th>Append To</th>
-                                <th>Assign</th>
-                                <th>Share</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    `;
-                    block.appendChild(table);
-                    
-                    // Aggiungi pulsanti
-                    const addRowBtn = document.createElement("button");
-                    addRowBtn.textContent = "Add Row";
-                    addRowBtn.onclick = function() { addRow(table); };
-                    block.appendChild(addRowBtn);
-                    
-                    //const removeRowBtn = document.createElement("button");
-                   // removeRowBtn.textContent = "Remove Last Row";
-                    //removeRowBtn.onclick = function() { removeLastRow(table); };
-                    //block.appendChild(removeRowBtn);
-                    
-                    const removeTableBtn = document.createElement("button");
-                    removeTableBtn.textContent = "Remove Table";
-                    removeTableBtn.onclick = function() { removeTable(block); };
-                    block.appendChild(removeTableBtn);
-                    
-                    // Popola le righe
-                    const tbody = table.querySelector('tbody');
-                    roleData.rows.forEach(rowData => {
-                        const row = tbody.insertRow();
+                    data.forEach(roleData => {
+                        const block = document.createElement('div');
+                        block.className = "role-block";
+                        document.getElementById('rolesContainer').appendChild(block);
                         
-                        // Aggiungi cella di eliminazione
-                        const deleteCell = row.insertCell();
-                        deleteCell.innerHTML = '❌';
-                        deleteCell.className = 'delete-cell';
-                        deleteCell.onclick = function() {
-                            if (confirm('Are you sure you want to delete this row?')) {
-                                row.remove();
-                            }
-                        };
+                        const roleNameLabel = document.createElement("label");
+                        roleNameLabel.innerHTML = 'Role Name: ';
+                        roleNameLabel.style.fontFamily = "Segoe UI";
                         
-                        // Aggiungi entity
-                        const entityCell = row.insertCell();
-                        const entityInput = document.createElement("input");
-                        entityInput.className = "entity-input";
-                        entityInput.type = "text";
-                        entityInput.value = rowData.entity || '';
-                        entityCell.appendChild(entityInput);
+                        const roleNameInput = document.createElement("input");
+                        roleNameInput.className = "role-name";
+                        roleNameInput.type = "text";
+                        roleNameInput.placeholder = "Enter Role Name";
+                        roleNameInput.value = roleData.name || 'Basic User';
+                        roleNameInput.style.width = "20%";
+                        roleNameInput.style.padding = "8px";
+                        roleNameInput.style.margin = "10px 0";
                         
-                        // Aggiungi permessi (assicurati che siano 8 colonne)
-                        const permissions = ['Create', 'Read', 'Write', 'Delete', 'Append', 'Append To', 'Assign', 'Share'];
-                        permissions.forEach((perm, index) => {
-                            const cell = row.insertCell();
-                            cell.style.cursor = 'pointer';
-                            cell.style.userSelect = 'none';
-                            cell.style.webkitUserSelect = 'none';
-                            cell.style.mozUserSelect = 'none';
-                            cell.style.msUserSelect = 'none';
-                            cell.onclick = function() { cyclePermission(cell); };
-                            // Usa il valore dal JSON o default a 0 se non presente
-                            const permValue = rowData.privileges[index] !== undefined ? rowData.privileges[index] : 0;
-                            setPermission(cell, permValue);
+                        block.appendChild(roleNameLabel);
+                        block.appendChild(roleNameInput);
+                        
+                        const downloadLabel = document.createElement("label");
+                        downloadLabel.innerHTML = 'Download Report: ';
+                        downloadLabel.style.color = "black";
+                        downloadLabel.style.fontFamily = "Segoe UI";
+                        
+                        const downloadSelect = document.createElement("select");
+                        downloadSelect.className = "download-choice";
+                        downloadSelect.innerHTML = `
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        `;
+                        
+                        block.appendChild(document.createElement("br"));
+                        block.appendChild(downloadLabel);
+                        block.appendChild(downloadSelect);
+                        
+                        const table = document.createElement("table");
+                        table.className = "permissionTable";
+                        table.innerHTML = `
+                            <thead>
+                                <tr>
+                                    <th>Delete</th>
+                                    <th>Upgrade</th>
+                                    <th>Entity</th>
+                                    <th>Create</th>
+                                    <th>Read</th>
+                                    <th>Write</th>
+                                    <th>Delete</th>
+                                    <th>Append</th>
+                                    <th>Append To</th>
+                                    <th>Assign</th>
+                                    <th>Share</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        `;
+                        block.appendChild(table);
+                        
+                        const addRowBtn = document.createElement("button");
+                        addRowBtn.textContent = "Add Row";
+                        addRowBtn.onclick = function() { addRow(table); };
+                        block.appendChild(addRowBtn);
+                        
+                        const removeTableBtn = document.createElement("button");
+                        removeTableBtn.textContent = "Remove Table";
+                        removeTableBtn.onclick = function() { removeTable(block); };
+                        block.appendChild(removeTableBtn);
+                        
+                        const tbody = table.querySelector('tbody');
+                        roleData.rows.forEach(rowData => {
+                            const row = tbody.insertRow();
+                            
+                            const deleteCell = row.insertCell();
+                            deleteCell.innerHTML = '❌';
+                            deleteCell.className = 'delete-cell';
+                            deleteCell.onclick = function() {
+                                if (confirm('Are you sure you want to delete this row?')) {
+                                    row.remove();
+                                }
+                            };
+                            
+                            const upgradeCell = row.insertCell();
+                            upgradeCell.innerHTML = '⏫';
+                            upgradeCell.className = 'upgrade-cell';
+                            upgradeCell.onclick = function() {
+                                upgradePermissions(row);
+                            };
+                            
+                            const entityCell = row.insertCell();
+                            const entityInput = document.createElement("input");
+                            entityInput.className = "entity-input";
+                            entityInput.type = "text";
+                            entityInput.value = rowData.entity || '';
+                            entityCell.appendChild(entityInput);
+                            
+                            const permissions = ['Create', 'Read', 'Write', 'Delete', 'Append', 'Append To', 'Assign', 'Share'];
+                            permissions.forEach((perm, index) => {
+                                const cell = row.insertCell();
+                                cell.style.cursor = 'pointer';
+                                cell.style.userSelect = 'none';
+                                cell.onclick = function() { cyclePermission(cell); };
+                                const permValue = rowData.privileges[index] !== undefined ? rowData.privileges[index] : 0;
+                                setPermission(cell, permValue);
+                            });
                         });
                     });
+                })
+                .catch(error => {
+                    console.error('Error loading Basic User JSON:', error);
+                    alert('Error loading Basic User permissions. Please make sure the file "Standard_Basic_User.json" exists in the root directory.');
                 });
-            } catch (error) {
-                alert('Errore nel caricamento del JSON: ' + error.message);
+        }
+
+        function removeLastRow(table) {
+            const tbody = table.querySelector('tbody');
+            if (tbody.rows.length > 0) {
+                tbody.deleteRow(tbody.rows.length - 1);
             }
-        };
-        reader.readAsText(file);
-    };
-    fileInput.click();
-}
+        }
 
-  function setPermission(cell, value) {
-    const permissionMap = {
-      0: { class: 'None', label: 'None 🚫' },
-      1: { class: 'User', label: 'User 👤' },
-      2: { class: 'BU', label: 'BU 💼' },
-      4: { class: 'ParentChild', label: 'Parent: Child BU 🏭' },
-      8: { class: 'Org', label: 'Org. 🌎' }
-    };
-    
-    const state = permissionMap[value] || permissionMap[0];
-    cell.className = state.class;
-    cell.textContent = state.label;
-  }
-  
-  </script>
-  <footer id="footer-right">
-    <p>© 2025 Pablo Guglielmino - Contact me at: pguglielmino89@hotmail.com</p>
-  </footer>
+        function removeTable(block) {
+            block.remove();
+        }
+
+        function exportTableToExcel() {
+            const workbook = new ExcelJS.Workbook();
+            const worksheet = workbook.addWorksheet('Permissions');
+
+            const cellStyles = {
+                Org: {
+                    fill: { type: 'pattern', pattern:'solid', fgColor: { argb: 'FF008000' } },
+                    font: { color: { argb: 'FFFFFFFF' }, bold: true },
+                },
+                ParentChild: {
+                    fill: { type: 'pattern', pattern:'solid', fgColor: { argb: 'FF90EE90' } },
+                    font: { color: { argb: 'FF000000' } },
+                },
+                BU: {
+                    fill: { type: 'pattern', pattern:'solid', fgColor: { argb: 'FFFFA500' } },
+                    font: { color: { argb: 'FF000000' } },
+                },
+                User: {
+                    fill: { type: 'pattern', pattern:'solid', fgColor: { argb: 'FFFFE4B5' } },
+                    font: { color: { argb: 'FF000000' } },
+                },
+                None: {
+                    fill: { type: 'pattern', pattern:'solid', fgColor: { argb: 'FFFF0000' } },
+                    font: { color: { argb: 'FFFFFFFF' }, bold: true },
+                },
+                header: {
+                    fill: { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFD3D3D3' } },
+                    font: { bold: true, color: { argb: 'FF000000' } },
+                },
+                roleName: {
+                    font: { bold: true, size: 14, color: { argb: 'FF0078D4' } },
+                    alignment: { horizontal: 'left', vertical: 'middle' }
+                },
+                downloadLabel: {
+                    font: { bold: true, color: { argb: 'FF323130' } }
+                },
+                downloadValue: {
+                    font: { italic: true, color: { argb: 'FF605E5C' } }
+                }
+            };
+
+            const roleBlocks = document.querySelectorAll('.role-block');
+
+            roleBlocks.forEach((block, index) => {
+                const roleName = block.querySelector('input[type="text"]').value || `Role ${index + 1}`;
+                const downloadChoice = block.querySelector('.download-choice')?.value || "Yes";
+                const table = block.querySelector('table');
+
+                const roleNameRow = worksheet.addRow([roleName]);
+                roleNameRow.eachCell(cell => {
+                    cell.style = cellStyles.roleName;
+                    cell.border = { bottom: { style: 'small', color: { argb: 'FF0078D4' } } };
+                });
+
+                worksheet.addRow(["Download Report:", downloadChoice]);
+
+                const headers = [];
+                table.querySelectorAll('thead th').forEach((th, idx) => {
+                    if (idx >= 2) headers.push(th.textContent.trim());
+                });
+                const headerRow = worksheet.addRow(headers);
+
+                headerRow.eachCell((cell) => {
+                    cell.style = cellStyles.header;
+                });
+
+                const rows = table.querySelectorAll('tbody tr');
+                rows.forEach(row => {
+                    const rowData = [];
+                    row.querySelectorAll('td').forEach((td, i) => {
+                        if (i === 2) {
+                            const input = td.querySelector('input');
+                            rowData.push(input ? input.value : '');
+                        } else if (i > 1) {
+                            rowData.push(td.textContent.trim());
+                        }
+                    });
+                    worksheet.addRow(rowData);
+                });
+
+                worksheet.addRow([]);
+            });
+
+            worksheet.eachRow((row, rowIndex) => {
+                row.eachCell((cell, colIndex) => {
+                    const content = cell.value;
+
+                    if (content === "Org.") {
+                        cell.style = cellStyles.Org;
+                    } else if (content === "Parent: Child BU") {
+                        cell.style = cellStyles.ParentChild;
+                    } else if (content === "BU") {
+                        cell.style = cellStyles.BU;
+                    } else if (content === "User") {
+                        cell.style = cellStyles.User;
+                    } else if (content === "None") {
+                        cell.style = cellStyles.None;
+                    }
+                });
+            });
+
+            workbook.xlsx.writeBuffer().then(function(buffer) {
+                const projectName = document.getElementById("projectName").value.trim();
+                const finalFileName = projectName ? `${projectName}.xlsx` : "permissions.xlsx";
+
+                const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = finalFileName;
+                link.click();
+            });
+        }
+
+        function copyToMA() {
+            let htmlContent = `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <meta charset="UTF-8">
+                    <title>D365 Permission Planner Export</title>
+                    <style>
+                        body { 
+                            font-family: 'Segoe UI', sans-serif;
+                            background: #f3f2f1;
+                            padding: 20px;
+                            color: #323130;
+                        }
+                        .role-block {
+                            background: white;
+                            padding: 16px;
+                            margin-bottom: 24px;
+                            border-radius: 2px;
+                            box-shadow: 0 1.6px 3.6px rgba(0,0,0,0.132);
+                        }
+                        .permissionTable {
+                            width: 100%;
+                            border-collapse: collapse;
+                            margin-bottom: 20px;
+                        }
+                        .permissionTable th {
+                            background: #faf9f8;
+                            padding: 8px;
+                            border-bottom: 1px solid #edebe9;
+                        }
+                        .permissionTable td {
+                            padding: 8px;
+                            border-bottom: 1px solid #edebe9;
+                            text-align: center;
+                        }
+                        .None { color: #a4262c; }
+                        .User { color: #107c10; }
+                        .BU { color: #d83b01; }
+                        .ParentChild { color: #b4009e; }
+                        .Org { color: #0078d4; }
+                    </style>
+                </head>
+                <body>
+                    <h2 style="color: #0078d4;">${escapeHtml(document.getElementById('projectName').value || 'D365 Permission Planner Export')}</h2>
+            `;
+
+            document.querySelectorAll('.role-block').forEach(block => {
+                const roleName = block.querySelector('.role-name').value || 'Unnamed Role';
+                const downloadChoice = block.querySelector('.download-choice').value || 'No';
+                const table = block.querySelector('.permissionTable');
+
+                htmlContent += `
+                    <div class="role-block">
+                        <h3 style="color: #0078d4; margin-top: 0;">${escapeHtml(roleName)}</h3>
+                        <p><strong>Download Report:</strong> ${escapeHtml(downloadChoice)}</p>
+                `;
+
+                if (table) {
+                    htmlContent += '<table class="permissionTable"><thead><tr>';
+                    
+                    // Intestazioni (salta Delete=0 e Upgrade=1)
+                    table.querySelectorAll('thead th').forEach((th, index) => {
+                        if (index >= 2) {
+                            htmlContent += `<th>${escapeHtml(th.textContent.trim())}</th>`;
+                        }
+                    });
+                    htmlContent += '</tr></thead><tbody>';
+
+                    // Righe
+                    table.querySelectorAll('tbody tr').forEach(tr => {
+                        const cells = tr.querySelectorAll('td');
+                        htmlContent += '<tr>';
+                        
+                        // Entity (index 2)
+                        const entityInput = cells[2]?.querySelector('input');
+                        htmlContent += `<td>${escapeHtml(entityInput?.value || '')}</td>`;
+                        
+                        // Permessi (indici 3-10)
+                        for (let i = 3; i <= 10; i++) {
+                            if (cells[i]) {
+                                const cellClass = Array.from(cells[i].classList).find(c => 
+                                    ['None', 'User', 'BU', 'ParentChild', 'Org'].includes(c)
+                                ) || '';
+                                htmlContent += `<td class="${cellClass}">${escapeHtml(cells[i].textContent.trim())}</td>`;
+                            }
+                        }
+                        
+                        htmlContent += '</tr>';
+                    });
+                    
+                    htmlContent += '</tbody></table></div>';
+                }
+            });
+
+            htmlContent += '</body></html>';
+            
+            // Usa il metodo più moderno disponibile
+            if (navigator.clipboard && window.ClipboardItem) {
+                const blob = new Blob([htmlContent], { type: 'text/html' });
+                const data = [new ClipboardItem({ 'text/html': blob })];
+                
+                navigator.clipboard.write(data)
+                    .then(() => {
+                        showSuccessNotification('Table copied to clipboard successfully!');
+                    })
+                    .catch(err => {
+                        console.error('Failed to copy:', err);
+                        // Fallback per browser più vecchi
+                        const tempElem = document.createElement('textarea');
+                        tempElem.value = htmlContent;
+                        document.body.appendChild(tempElem);
+                        tempElem.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(tempElem);
+                        showSuccessNotification('Table copied to clipboard (using fallback method)');
+                    });
+            } else {
+                // Fallback per browser più vecchi
+                const tempElem = document.createElement('textarea');
+                tempElem.value = htmlContent;
+                document.body.appendChild(tempElem);
+                tempElem.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempElem);
+                showSuccessNotification('Table copied to clipboard (using fallback method)');
+            }
+        }
+
+        function showSuccessNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.position = 'fixed';
+            notification.style.bottom = '20px';
+            notification.style.right = '20px';
+            notification.style.backgroundColor = '#107c10';
+            notification.style.color = 'white';
+            notification.style.padding = '10px 20px';
+            notification.style.borderRadius = '2px';
+            notification.style.boxShadow = '0 2px 4px rgba(0,0,0,0.2)';
+            notification.style.zIndex = '1000';
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => document.body.removeChild(notification), 300);
+            }, 2000);
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function addNewRole() {
+            const allTables = document.querySelectorAll("table");
+            const lastTable = allTables[allTables.length - 1];
+
+            const block = document.createElement('div');
+            block.className = "role-block";
+            block.style.marginTop = "30px";
+            document.getElementById("rolesContainer").appendChild(block);
+
+            const roleNameLabel = document.createElement("label");
+            roleNameLabel.textContent = "Role Name: ";
+            roleNameLabel.style.fontFamily = "Segoe UI";
+            const roleNameInput = document.createElement("input");
+            roleNameInput.className = "role-name";
+            roleNameInput.type = "text";
+            roleNameInput.placeholder = "Enter Role Name";
+            roleNameInput.style.width = "20%";
+            roleNameInput.style.padding = "8px";
+            roleNameInput.style.margin = "10px 0";
+
+            block.appendChild(roleNameLabel);
+            block.appendChild(roleNameInput);
+
+            const br = document.createElement("br");
+            block.appendChild(br);
+
+            const downloadLabel = document.createElement("label");
+            downloadLabel.style.fontFamily = "Segoe UI";
+            downloadLabel.style.color = "black";
+            downloadLabel.innerHTML = `Download Report:
+                <select class="download-choice" style="padding: 6px; font-family: Segoe UI; margin-left: 10px;">
+                    <option value="Yes" selected>Yes</option>
+                    <option value="No">No</option>
+                </select>`;
+            block.appendChild(downloadLabel);
+
+            const newTable = document.createElement("table");
+            newTable.className = "permissionTable";
+            newTable.innerHTML = `
+                <thead>
+                    <tr>
+                        <th>Delete</th>
+                        <th>Upgrade</th>
+                        <th>Entity</th>
+                        <th>Create</th>
+                        <th>Read</th>
+                        <th>Write</th>
+                        <th>Delete</th>
+                        <th>Append</th>
+                        <th>Append To</th>
+                        <th>Assign</th>
+                        <th>Share</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            `;
+
+            block.appendChild(newTable);
+
+            const addRowBtn = document.createElement("button");
+            addRowBtn.textContent = "Add Row";
+            addRowBtn.style.marginTop = "10px";
+            addRowBtn.onclick = () => addRow(newTable);
+            block.appendChild(addRowBtn);
+
+            const removeTableBtn = document.createElement("button");
+            removeTableBtn.textContent = "Remove Table";
+            removeTableBtn.style.marginTop = "10px";
+            removeTableBtn.onclick = () => removeTable(block);
+            block.appendChild(removeTableBtn);
+            
+            const prevRows = lastTable.querySelectorAll("tbody tr");
+            const tbody = newTable.querySelector("tbody");
+
+            if (prevRows.length === 0) {
+                addRow(newTable);
+            } else {
+                prevRows.forEach(row => {
+                    const newRow = tbody.insertRow();
+                    
+                    const deleteCell = newRow.insertCell();
+                    deleteCell.innerHTML = '❌';
+                    deleteCell.className = 'delete-cell';
+                    deleteCell.onclick = function() {
+                        if (confirm('Are you sure you want to delete this row?')) {
+                            newRow.remove();
+                        }
+                    };
+
+                    const upgradeCell = newRow.insertCell();
+                    upgradeCell.innerHTML = '⏫';
+                    upgradeCell.className = 'upgrade-cell';
+                    upgradeCell.onclick = function() {
+                        upgradePermissions(newRow);
+                    };
+
+                    for (let i = 2; i < row.cells.length; i++) {
+                        const oldCell = row.cells[i];
+                        const newCell = newRow.insertCell();
+
+                        if (i === 2) {
+                            const input = document.createElement("input");
+                            input.type = "text";
+                            input.className = "entity-input";
+                            input.placeholder = "Enter Entity";
+                            input.value = oldCell.querySelector("input")?.value || "";
+                            newCell.appendChild(input);
+                        } else {
+                            newCell.textContent = oldCell.textContent;
+                            newCell.className = oldCell.className;
+                            newCell.style.cursor = 'pointer';
+                            newCell.onclick = function() {
+                                cyclePermission(newCell);
+                            };
+                        }
+                    }
+                });
+            }
+        }
+        
+        function exportToJSON() {
+            const roleBlocks = document.querySelectorAll(".role-block");
+            const data = [];
+
+            const permissionMap = {
+                "None 🚫": 0,
+                "User 👤": 1,
+                "BU 💼": 2,
+                "Parent: Child BU 🏭": 4,
+                "Org. 🌎": 8
+            };
+
+            roleBlocks.forEach(block => {
+                const roleName = block.querySelector("input.role-name")?.value.trim() || "No Role Name";
+                const downloadChoice = block.querySelector(".download-choice")?.value || "Yes";
+                const table = block.querySelector(".permissionTable");
+                if (!table) return;
+
+                const tbody = table.querySelector("tbody");
+                if (!tbody) return;
+
+                const rows = [];
+                const trRows = tbody.querySelectorAll("tr");
+
+                trRows.forEach(tr => {
+                    const entityInput = tr.querySelector("td:nth-child(3) input.entity-input");
+                    const entityName = entityInput ? entityInput.value.trim() : "";
+
+                    const tds = tr.querySelectorAll("td");
+                    const privileges = [];
+
+                    for (let i = 3; i <= 10; i++) {
+                        if (tds[i]) {
+                            const text = tds[i].innerText.trim();
+                            const value = permissionMap[text] ?? 0;
+                            privileges.push(value);
+                        }
+                    }
+
+                    if (entityName) {
+                        rows.push({
+                            entity: entityName,
+                            privileges: privileges
+                        });
+                    }
+                });
+
+                data.push({
+                    name: roleName,
+                    rows: rows
+                });
+            });
+
+            const projectName = document.getElementById("projectName").value.trim();
+            const fileName = projectName ? `${projectName}_roles.json` : "roles.json";
+            
+            const json = JSON.stringify(data, null, 2);
+            const blob = new Blob([json], { type: "application/json" });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = fileName;
+            link.click();
+        }
+
+        function importFromJSON() {
+            const fileInput = document.createElement('input');
+            fileInput.type = 'file';
+            fileInput.accept = '.json';
+            fileInput.onchange = function(e) {
+                const file = e.target.files[0];
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        const data = JSON.parse(e.target.result);
+                        document.getElementById('rolesContainer').innerHTML = '';
+                        
+                        data.forEach(roleData => {
+                            const block = document.createElement('div');
+                            block.className = "role-block";
+                            document.getElementById('rolesContainer').appendChild(block);
+                            
+                            const roleNameLabel = document.createElement("label");
+                            roleNameLabel.innerHTML = 'Role Name: ';
+                            roleNameLabel.style.fontFamily = "Segoe UI";
+                            
+                            const roleNameInput = document.createElement("input");
+                            roleNameInput.className = "role-name";
+                            roleNameInput.type = "text";
+                            roleNameInput.placeholder = "Enter Role Name";
+                            roleNameInput.value = roleData.name || '';
+                            roleNameInput.style.width = "20%";
+                            roleNameInput.style.padding = "8px";
+                            roleNameInput.style.margin = "10px 0";
+                            
+                            block.appendChild(roleNameLabel);
+                            block.appendChild(roleNameInput);
+                            
+                            const downloadLabel = document.createElement("label");
+                            downloadLabel.innerHTML = 'Download Report: ';
+                            downloadLabel.style.color = "black";
+                            downloadLabel.style.fontFamily = "Segoe UI";
+                            
+                            const downloadSelect = document.createElement("select");
+                            downloadSelect.className = "download-choice";
+                            downloadSelect.innerHTML = `
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            `;
+                            
+                            block.appendChild(document.createElement("br"));
+                            block.appendChild(downloadLabel);
+                            block.appendChild(downloadSelect);
+                            
+                            const table = document.createElement("table");
+                            table.className = "permissionTable";
+                            table.innerHTML = `
+                                <thead>
+                                    <tr>
+                                        <th>Delete</th>
+                                        <th>Entity</th>
+                                        <th>Create</th>
+                                        <th>Read</th>
+                                        <th>Write</th>
+                                        <th>Delete</th>
+                                        <th>Append</th>
+                                        <th>Append To</th>
+                                        <th>Assign</th>
+                                        <th>Share</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            `;
+                            block.appendChild(table);
+                            
+                            const addRowBtn = document.createElement("button");
+                            addRowBtn.textContent = "Add Row";
+                            addRowBtn.onclick = function() { addRow(table); };
+                            block.appendChild(addRowBtn);
+                            
+                            const removeTableBtn = document.createElement("button");
+                            removeTableBtn.textContent = "Remove Table";
+                            removeTableBtn.onclick = function() { removeTable(block); };
+                            block.appendChild(removeTableBtn);
+                            
+                            const tbody = table.querySelector('tbody');
+                            roleData.rows.forEach(rowData => {
+                                const row = tbody.insertRow();
+                                
+                                const deleteCell = row.insertCell();
+                                deleteCell.innerHTML = '❌';
+                                deleteCell.className = 'delete-cell';
+                                deleteCell.onclick = function() {
+                                    if (confirm('Are you sure you want to delete this row?')) {
+                                        row.remove();
+                                    }
+                                };
+                                
+                                const entityCell = row.insertCell();
+                                const entityInput = document.createElement("input");
+                                entityInput.className = "entity-input";
+                                entityInput.type = "text";
+                                entityInput.value = rowData.entity || '';
+                                entityCell.appendChild(entityInput);
+                                
+                                const permissions = ['Create', 'Read', 'Write', 'Delete', 'Append', 'Append To', 'Assign', 'Share'];
+                                permissions.forEach((perm, index) => {
+                                    const cell = row.insertCell();
+                                    cell.style.cursor = 'pointer';
+                                    cell.style.userSelect = 'none';
+                                    cell.style.webkitUserSelect = 'none';
+                                    cell.style.mozUserSelect = 'none';
+                                    cell.style.msUserSelect = 'none';
+                                    cell.onclick = function() { cyclePermission(cell); };
+                                    const permValue = rowData.privileges[index] !== undefined ? rowData.privileges[index] : 0;
+                                    setPermission(cell, permValue);
+                                });
+                            });
+                        });
+                    } catch (error) {
+                        alert('Errore nel caricamento del JSON: ' + error.message);
+                    }
+                };
+                reader.readAsText(file);
+            };
+            fileInput.click();
+        }
+
+        function setPermission(cell, value) {
+            const permissionMap = {
+                0: { class: 'None', label: 'None 🚫' },
+                1: { class: 'User', label: 'User 👤' },
+                2: { class: 'BU', label: 'BU 💼' },
+                4: { class: 'ParentChild', label: 'Parent: Child BU 🏭' },
+                8: { class: 'Org', label: 'Org. 🌎' }
+            };
+            
+            const state = permissionMap[value] || permissionMap[0];
+            cell.className = state.class;
+            cell.textContent = state.label;
+        }
+    </script>
+    <footer id="footer-right">
+        <p>© 2025 Pablo Guglielmino - Contact: pguglielmino89@hotmail.com</p>
+    </footer>
 </body>
-
 </html>
